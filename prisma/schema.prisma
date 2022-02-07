@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  user_id    Int       @id @default(autoincrement())
+  username   String    @unique @db.VarChar(255)
+  password   String    @db.VarChar(60)
+  is_admin   Boolean   @default(false)
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  links      link[]
+}
+
+model link {
+  link_id     Int       @id @default(autoincrement())
+  user_id     Int
+  url         String    @db.Text()
+  slug        String    @unique @db.VarChar(255)
+  title       String?   @db.VarChar(255)
+  description String?   @db.Text()
+  image       String?   @db.Text()
+  created_at  DateTime? @default(now()) @db.Timestamptz(6)
+  user        user      @relation(fields: [user_id], references: [user_id])
+  clicks      click[]
+
+  @@index([user_id], name: "link_user_id_idx")
+}
+
+model click {
+  click_id   Int       @id @default(autoincrement())
+  link_id    Int
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  ua         String?   @db.VarChar(255)
+  ip         String?   @db.VarChar(50)
+  referral   String?   @db.VarChar(255)
+  country    String?   @db.VarChar(255)
+  link       link      @relation(fields: [link_id], references: [link_id])
+
+  @@index([link_id], name: "click_link_id_idx")
+}
