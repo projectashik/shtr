@@ -17,7 +17,7 @@ export default function SlugPage({ link }: { link: any }) {
             content={parsedLink.description ?? ""}
           />
           <meta property="og:image" content={parsedLink.image ?? ""} />
-          <meta property="og:url" content={parsedLink.url ?? ""} />
+          {/* <meta property="og:url" content={parsedLink.url ?? ""} /> */}
           <meta property="og:type" content="article" />
           <meta property="og:site_name" content={parsedLink.title ?? ""} />
         </Head>
