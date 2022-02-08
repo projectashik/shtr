@@ -2,7 +2,6 @@ import handler from "lib/handler";
 import { badRequest, ok } from "lib/response";
 import prisma from "lib/db";
 import { useAuth } from "lib/middleware";
-import { parser } from "html-metadata-parser";
 
 handler.get(async (req, res) => {
   await useAuth(req, res);
@@ -33,15 +32,10 @@ handler.post(async (req, res) => {
       },
     });
     if (!linkExisted) {
-      const metadata = await parser(url);
       const link = await prisma.link.create({
         data: {
           url,
           slug,
-          description:
-            metadata.meta.description ?? metadata.og.description ?? "",
-          title: metadata.meta.title ?? metadata.og.title ?? "",
-          image: metadata.og.image ?? "",
           user_id,
         },
       });

@@ -2,27 +2,12 @@ import { GetServerSidePropsContext } from "next";
 import prisma from "lib/db";
 import { link } from "@prisma/client";
 import Head from "next/head";
+import { getClientInfo } from "lib/requests";
 
 export default function SlugPage({ link }: { link: any }) {
   const parsedLink = JSON.parse(link);
   return (
     <>
-      {parsedLink && (
-        <Head>
-          <title>{parsedLink.title ?? ""}</title>
-          <meta name="description" content={parsedLink.description ?? ""} />
-          <meta property="og:title" content={parsedLink.title ?? ""} />
-          <meta
-            property="og:description"
-            content={parsedLink.description ?? ""}
-          />
-          <meta property="og:image" content={parsedLink.image ?? ""} />
-          {/* <meta property="og:url" content={parsedLink.url ?? ""} /> */}
-          <meta property="og:type" content="article" />
-          <meta property="og:site_name" content={parsedLink.title ?? ""} />
-        </Head>
-      )}
-      <div>{parsedLink && <h1>{parsedLink.title}</h1>}</div>
       <div>{!parsedLink && <h1>404 Not Found</h1>}</div>
     </>
   );
@@ -30,6 +15,7 @@ export default function SlugPage({ link }: { link: any }) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { slug } = context.query;
+  const req = context.req;
 
   const link = await prisma?.link.findUnique({
     where: {
@@ -37,12 +23,33 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     },
   });
   if (link) {
+    console.log("COntext");
+    const {
+      browser,
+      country,
+      device,
+      ip,
+      os,
+      userAgent: ua,
+    } = await getClientInfo(req);
+    await prisma.click.create({
+      data: {
+        link_id: link.link_id,
+        ua: ua,
+        browser,
+        os,
+        country,
+        device,
+        ip: ip as string,
+        referral: req.headers["referer"],
+      },
+    });
     return {
       props: {
         link: JSON.stringify(link),
       },
       redirect: {
-        permanent: true,
+        permanent: false,
         destination: link.url,
       },
     };

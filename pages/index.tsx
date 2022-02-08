@@ -14,7 +14,6 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         {/* @ts-ignore */}
-        <image src="https://api.netlify.com/api/v1/badges/d0b670dc-4068-4abc-b8d7-71504093631f/deploy-status" />
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
