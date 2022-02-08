@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn build-geo && next build",
+    "build": "next build",
     "build-geo": "node scripts/build-geo.js",
     "start": "next start",
     "lint": "next lint",
