@@ -11,7 +11,7 @@ import {
 import isLocalhost from "is-localhost-ip";
 import { browserName, detectOS } from "detect-browser";
 import { parse } from "next-useragent";
-import geoIp from "fast-geoip";
+import geoIp from "geoip-country";
 
 export function getIpAddress(req: NextApiRequestExtended) {
   // Custom header
@@ -53,9 +53,9 @@ export async function getCountry(req: NextApiRequestExtended, ip: string) {
   }
 
   // Ignore local ips
-  // if (await isLocalhost(ip)) {
-  //   return;
-  // }
+  if (await isLocalhost(ip)) {
+    return;
+  }
 
   const result = await geoIp.lookup(ip);
 
