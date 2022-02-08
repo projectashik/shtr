@@ -63,7 +63,7 @@ export async function getCountry(req: NextApiRequestExtended, ip: string) {
   // Database lookup
   if (!lookup) {
     lookup = await maxmind.open(
-      path.resolve(__dirname, "/public/geo/GeoLite2-Country.mmdb")
+      path.resolve(__dirname, "./public/geo/GeoLite2-Country.mmdb")
     );
   }
 
