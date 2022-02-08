@@ -9,12 +9,9 @@ import {
   MOBILE_OS,
 } from "./constants";
 import isLocalhost from "is-localhost-ip";
-import maxmind from "maxmind";
-import path from "path";
 import { browserName, detectOS } from "detect-browser";
 import { parse } from "next-useragent";
-
-let lookup: any;
+import geoIp from "fast-geoip";
 
 export function getIpAddress(req: NextApiRequestExtended) {
   // Custom header
@@ -56,20 +53,13 @@ export async function getCountry(req: NextApiRequestExtended, ip: string) {
   }
 
   // Ignore local ips
-  if (await isLocalhost(ip)) {
-    return;
-  }
+  // if (await isLocalhost(ip)) {
+  //   return;
+  // }
 
-  // Database lookup
-  if (!lookup) {
-    lookup = await maxmind.open(
-      path.resolve(__dirname, "./public/geo/GeoLite2-Country.mmdb")
-    );
-  }
+  const result = await geoIp.lookup(ip);
 
-  const result = lookup.get(ip);
-
-  return result?.country?.iso_code;
+  return result?.country;
 }
 
 export async function getClientInfo(req: any) {

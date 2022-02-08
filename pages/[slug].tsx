@@ -38,7 +38,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         ua: ua,
         browser: browser as string,
         os: os as string,
-        country,
+        country: country as string,
         device,
         ip: ip as string,
         referral: req.headers["referer"],
