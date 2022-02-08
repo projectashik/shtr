@@ -36,8 +36,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       data: {
         link_id: link.link_id,
         ua: ua,
-        browser,
-        os,
+        browser: browser as string,
+        os: os as string,
         country,
         device,
         ip: ip as string,
