@@ -9,8 +9,9 @@ import { SignInSchema } from "schemas";
 import axios from "axios";
 import { toast } from "lib/toast";
 import { useAuth } from "hooks";
+import login from "./api/auth/login";
 
-const login = () => {
+const LoginPage = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
