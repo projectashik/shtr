@@ -4,6 +4,12 @@ export function ok(res: NextApiResponse, data: object | null = {}) {
   return res.status(200).json(data);
 }
 
+export function redirect(res: NextApiResponse, url: string) {
+  res.setHeader("Location", url);
+
+  return res.status(303).end();
+}
+
 export function badRequest(res: NextApiResponse, msg = "400 Bad Request") {
   return res.status(400).end(msg);
 }

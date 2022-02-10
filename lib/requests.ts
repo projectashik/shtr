@@ -54,7 +54,7 @@ export async function getCountry(req: NextApiRequestExtended, ip: string) {
 
   // Ignore local ips
   if (await isLocalhost(ip)) {
-    return;
+    return (await geoIp.lookup(process.env.MY_IP as string)?.country) || "";
   }
 
   const result = await geoIp.lookup(ip);

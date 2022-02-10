@@ -27,6 +27,7 @@ model link {
   url        String    @db.Text()
   slug       String    @unique @db.VarChar(255)
   created_at DateTime? @default(now()) @db.Timestamptz(6)
+  password   String?   @db.VarChar(60)
   user       user      @relation(fields: [user_id], references: [user_id])
   clicks     click[]
 
