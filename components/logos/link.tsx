@@ -14,7 +14,7 @@ const LinkSVG = () => {
           <g transform="translate(-17.325 -17.325) scale(0.35)" id="container">
             <g className="fill-primary-600">
               <rect
-                vector-effect="non-scaling-stroke"
+                vectorEffect="non-scaling-stroke"
                 x="1"
                 y="1"
                 width="98"
