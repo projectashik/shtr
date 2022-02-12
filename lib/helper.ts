@@ -59,7 +59,6 @@ export const getTopReferral = (links: any[] | undefined) => {
         });
       });
   }
-  console.log(referrals);
   let topReferral =
     referrals &&
     Object.keys(referrals).length > 0 &&
@@ -67,7 +66,6 @@ export const getTopReferral = (links: any[] | undefined) => {
       referrals[a] > referrals[b] ? a : b
     );
 
-  console.log(topReferral);
   topReferral = topReferral || "";
   return topReferral;
 };

@@ -37,7 +37,6 @@ export default function SlugPage({ link }: { link: any }) {
       }
     } catch (e: any) {
       setLoading(false);
-      console.log(e.response);
       setError(e.response.data as string);
     }
   };

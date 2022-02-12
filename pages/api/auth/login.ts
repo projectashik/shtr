@@ -4,9 +4,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import { AUTH_COOKIE_NAME } from "lib/constants";
 import prisma from "lib/db";
-import handler from "lib/handler";
+import { NextApiRequestExtended } from "types";
 
-handler.post(async (req, res) => {
+const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -26,6 +26,7 @@ handler.post(async (req, res) => {
       const cookie = serialize(AUTH_COOKIE_NAME, token, {
         path: "/",
         httpOnly: true,
+        sameSite: true,
         maxAge: 60 * 60 * 24 * 30,
       });
       res.setHeader("Set-Cookie", [cookie]);
@@ -34,8 +35,7 @@ handler.post(async (req, res) => {
       return badRequest(res, "Invalid username or password");
     }
   } catch (e) {
-    console.log(e);
     return badRequest(res, "Invalid username or password");
   }
-});
+};
 export default handler;

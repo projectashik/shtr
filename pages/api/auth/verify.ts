@@ -1,15 +1,15 @@
-import handler from "lib/handler";
-import { useAuth } from "lib/middleware";
+import { use_auth } from "lib/middleware";
 import { ok, unauthorized } from "lib/response";
+import { NextApiResponse } from "next";
+import { NextApiRequestExtended } from "types";
 
-handler.get(async (req, res) => {
-  await useAuth(req, res);
-  console.log("Done");
-  console.log(req.auth);
+export default async function handler(
+  req: NextApiRequestExtended,
+  res: NextApiResponse
+) {
+  await use_auth(req, res);
   if (req.auth) {
     return ok(res, { auth: req.auth });
   }
   return unauthorized(res);
-});
-
-export default handler;
+}

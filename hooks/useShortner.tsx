@@ -12,7 +12,7 @@ const useShortner = () => {
     setCreateError("");
     const slug = makeSlug(8);
     try {
-      const res = await axios.post("/api/links", {
+      const res = await axios.post("/api/link/shorten", {
         url,
         slug,
       });
@@ -21,7 +21,6 @@ const useShortner = () => {
         toast({ message: "Short URL Copied to your clipboard" });
       }
     } catch (e: any) {
-      console.log(e.response);
       setCreateError(e.response.data);
       toast({ message: "Error shortening url" });
     }

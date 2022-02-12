@@ -8,37 +8,30 @@ import Button from "components/ui/Button";
 import { SignInSchema } from "schemas";
 import axios from "axios";
 import { toast } from "lib/toast";
-import { useAuth } from "hooks";
-import login from "./api/auth/login";
+import { useUser } from "hooks";
+import error from "next/error";
+import { withRedirectIfAuthenticated } from "utils";
 
 const LoginPage = () => {
+  const { login, error } = useUser();
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
     onSubmit: async (values) => {
-      try {
-        const res = await axios.post("/api/auth/login", {
-          username: values.username,
-          password: values.password,
-        });
-        if (res.status === 200) {
-          toast({ message: "Logged In Successfully" });
-        }
-      } catch (e: any) {
-        if (e.response) {
-          if (e.response.data === "Invalid username or password") {
-            formik.setFieldError("username", "Invalid username or password");
-          }
+      login({
+        username: values.username,
+        password: values.password,
+      });
+      if (error) {
+        if (error.type === "login") {
+          formik.setFieldError("username", error.message);
         }
       }
     },
     validationSchema: SignInSchema,
   });
-
-  const { isAuthenticated, loading, user } = useAuth();
-  console.log("Authenticated: ", isAuthenticated, loading);
 
   return (
     <Layout>
@@ -70,4 +63,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withRedirectIfAuthenticated(LoginPage);

@@ -1,11 +1,11 @@
 import handler from "lib/handler";
 import { badRequest, ok } from "lib/response";
 import prisma from "lib/db";
-import { useAuth } from "lib/middleware";
+import { use_auth } from "lib/middleware";
 import link from "next/link";
 
 handler.get(async (req, res) => {
-  await useAuth(req, res);
+  await use_auth(req, res);
   try {
     const links = await prisma.link.findMany({
       include: {
@@ -37,7 +37,7 @@ handler.get(async (req, res) => {
 });
 
 handler.post(async (req, res) => {
-  await useAuth(req, res);
+  await use_auth(req, res);
   const { user_id } = req.auth;
   const { url, slug } = req.body;
   try {
@@ -59,13 +59,12 @@ handler.post(async (req, res) => {
       return badRequest(res, "Slug already exist");
     }
   } catch (e: any) {
-    console.log(e);
     return badRequest(res, "Something went wrong");
   }
 });
 
 handler.delete(async (req, res) => {
-  await useAuth(req, res);
+  await use_auth(req, res);
   const { slug } = req.body;
   try {
     const link = await prisma.link.findUnique({
@@ -85,7 +84,6 @@ handler.delete(async (req, res) => {
     });
     return ok(res, link);
   } catch (e: any) {
-    console.log(e);
     return badRequest(res, "Something went wrong");
   }
 });

@@ -1,8 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Button } from "components/ui";
-import { useAuth } from "hooks";
+import { useUser } from "hooks";
 import { useRouter } from "next/router";
-import logout from "pages/api/auth/logout";
 import { Fragment } from "react";
 import {
   HiChevronDown,
@@ -11,7 +10,7 @@ import {
 } from "react-icons/hi";
 
 const UserDropdown = () => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useUser();
   const router = useRouter();
 
   const dropItems = [

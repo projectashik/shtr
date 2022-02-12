@@ -14,8 +14,6 @@ handler.post(async (req, res) => {
     return notFound(res, "Link not found");
   }
   if (link.password !== password) {
-    console.log("link.password", link.password);
-    console.log("password", password);
     return badRequest(res, "Password is incorrect");
   }
   await linkClickQuery(req, link.link_id);

@@ -1,9 +1,13 @@
 import { serialize } from "cookie";
 import { AUTH_COOKIE_NAME } from "lib/constants";
-import handler from "lib/handler";
 import { ok } from "lib/response";
+import { NextApiResponse } from "next";
+import { NextApiRequestExtended } from "types";
 
-handler.post(async (req, res) => {
+export default function handler(
+  req: NextApiRequestExtended,
+  res: NextApiResponse
+) {
   const cookie = serialize(AUTH_COOKIE_NAME, "", {
     path: "/",
     httpOnly: true,
@@ -12,6 +16,4 @@ handler.post(async (req, res) => {
 
   res.setHeader("Set-Cookie", [cookie]);
   return ok(res);
-});
-
-export default handler;
+}

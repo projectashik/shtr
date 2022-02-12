@@ -19,12 +19,10 @@ const UrlCard = ({ link }: { link: link }) => {
         },
       });
       if (res.data) {
-        console.log(res.data);
         toast({ message: "Deleted Link" });
         mutate("fetch-links");
       }
     } catch (e: any) {
-      console.log(e.response);
       toast({ message: "Error deleting link" });
     }
   };

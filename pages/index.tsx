@@ -2,7 +2,6 @@ import { link } from "@prisma/client";
 import { StatsCard, UrlCard } from "components/common";
 import ShortenUrlForm from "components/forms/ShortenUrlForm";
 import AppLayout from "components/layouts/AppLayout";
-import { Button } from "components/ui";
 import { FULL_COUNTRIES } from "lib/constants";
 import { linksFetcher } from "lib/fetchers";
 import { countTotalClicks, getTopCountry, getTopReferral } from "lib/helper";
@@ -15,6 +14,7 @@ import {
   HiOutlineTrash,
 } from "react-icons/hi";
 import useSWR from "swr";
+import { withPageAuthRequired } from "utils";
 
 const Home: NextPage = () => {
   const { data: links } = useSWR<any[]>("fetch-links", linksFetcher);
@@ -57,4 +57,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default withPageAuthRequired(Home);

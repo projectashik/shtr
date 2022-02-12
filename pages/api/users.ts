@@ -1,11 +1,11 @@
 import handler from "lib/handler";
 import prisma from "lib/db";
 import { badRequest, ok, unauthorized } from "lib/response";
-import { useAuth, useMustBeAdmin } from "lib/middleware";
+import { use_auth } from "lib/middleware";
 import { hashPassword } from "lib/crypto";
 
 handler.get(async (req, res) => {
-  await useAuth(req, res);
+  await use_auth(req, res);
   try {
     const { is_admin } = req.auth;
     if (is_admin) {
@@ -24,7 +24,7 @@ handler.get(async (req, res) => {
 });
 
 handler.post(async (req, res) => {
-  await useAuth(req, res);
+  await use_auth(req, res);
   try {
     if (req.auth?.is_admin as boolean) {
       const { username, password } = req.body;

@@ -15,7 +15,7 @@ export function use(middleware: any) {
     });
 }
 
-export const useAuth = use(
+export const use_auth = use(
   async (req: NextApiRequestExtended, res: NextApiResponse, next: any) => {
     const token = await getAuthToken(req);
 
@@ -24,18 +24,6 @@ export const useAuth = use(
     }
 
     req.auth = token;
-    console.log("ODne");
-    next();
-  }
-);
-
-export const useMustBeAdmin = use(
-  async (req: NextApiRequestExtended, res: NextApiResponse, next: any) => {
-    await useAuth(req, res);
-    console.log(req.auth);
-    if (!req.auth?.is_admin) {
-      return unauthorized(res);
-    }
     next();
   }
 );

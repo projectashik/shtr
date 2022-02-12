@@ -1,7 +1,7 @@
 import handler from "lib/handler";
 import prisma from "lib/db";
 import { badRequest, ok, unauthorized } from "lib/response";
-import { useAuth } from "lib/middleware";
+import { use_auth } from "lib/middleware";
 import { checkPassword, hashPassword } from "lib/crypto";
 
 handler.get(async (req, res) => {
@@ -14,13 +14,12 @@ handler.get(async (req, res) => {
     });
     return ok(res, user);
   } catch (e) {
-    console.log(e);
     return badRequest(res, "Something went wrong");
   }
 });
 
 handler.post(async (req, res) => {
-  await useAuth(req, res);
+  await use_auth(req, res);
   const { user_id: current_user_id, is_admin } = req.auth;
   let { user_id } = req.query;
   const { type } = req.body;
@@ -40,7 +39,6 @@ handler.post(async (req, res) => {
           msg: "Username updated successfully.",
         });
       } catch (e: any) {
-        console.log(e);
         return badRequest(res, "Username should be unique");
       }
     } else {
@@ -68,19 +66,15 @@ handler.post(async (req, res) => {
                 msg: "Password updated successfully",
               });
             } catch (e) {
-              console.log(e);
               return badRequest(res, "Something went wrong during ");
             }
           } else {
-            console.log("Yourpassword doesn't match");
             return badRequest(res, "Old password doesn't match.");
           }
         } else {
-          console.log("User doens't exist");
           return badRequest(res, "User doesn't exist");
         }
       } else {
-        console.log("Password doesnt' exist");
         return badRequest(res, "Password doesn't match.");
       }
     }
