@@ -1,4 +1,5 @@
 import { click } from "@prisma/client";
+import { useTheme } from "next-themes";
 
 export const makeSlug = (length: number) => {
   let result = "";

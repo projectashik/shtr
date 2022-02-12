@@ -22,6 +22,7 @@
     "is-localhost-ip": "^1.4.0",
     "jose": "2.0.5",
     "jotai": "^1.5.3",
+    "kbar": "^0.1.0-beta.27",
     "next": "12.0.10",
     "next-connect": "^0.11.1",
     "next-themes": "^0.0.15",

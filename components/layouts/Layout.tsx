@@ -1,8 +1,9 @@
+import { changeTheme } from "lib/theme";
 import { useTheme } from "next-themes";
 
 const Layout = ({ children }: any) => {
   const { theme, setTheme, systemTheme } = useTheme();
-  const changeTheme = () => {
+  const toggleTheme = () => {
     if (theme === "dark") {
       setTheme("light");
     } else if (theme === "light") {
@@ -18,7 +19,7 @@ const Layout = ({ children }: any) => {
   return (
     <div>
       {children}
-      <button onClick={changeTheme} className="fixed bottom-10 left-10 block">
+      <button onClick={toggleTheme} className="fixed bottom-10 left-10 block">
         Change Theme
       </button>
     </div>

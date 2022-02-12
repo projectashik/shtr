@@ -1,4 +1,4 @@
-import { UserDropdown } from "components/common";
+import { CommandBar, UserDropdown } from "components/common";
 import LinkSVG from "components/logos/link";
 import { Button } from "components/ui";
 import Layout from "./Layout";
@@ -25,7 +25,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </div>
         </nav>
       </header>
-      <main className="container mx-auto px-2 md:px-0 mt-8">{children}</main>
+      <main className="container mx-auto px-2 md:px-0 mt-8">
+        <CommandBar />
+        {children}
+      </main>
     </Layout>
   );
 };
