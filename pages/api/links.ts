@@ -2,7 +2,6 @@ import handler from "lib/handler";
 import { badRequest, ok } from "lib/response";
 import prisma from "lib/db";
 import { use_auth } from "lib/middleware";
-import link from "next/link";
 
 handler.get(async (req, res) => {
   await use_auth(req, res);
@@ -27,7 +26,7 @@ handler.get(async (req, res) => {
         },
       },
       orderBy: {
-        created_at: "desc",
+        created_at: "asc",
       },
     });
     return ok(res, links);

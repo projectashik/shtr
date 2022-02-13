@@ -16,7 +16,11 @@ handler.post(async (req, res) => {
   if (link.password !== password) {
     return badRequest(res, "Password is incorrect");
   }
-  await linkClickQuery(req, link.link_id);
+  try {
+    await linkClickQuery(req, link.link_id);
+  } catch (e) {
+    console.log(e);
+  }
   return ok(res, { success: true });
 });
 

@@ -1,5 +1,5 @@
-import { link } from "@prisma/client";
 import { StatsCard, UrlCard } from "components/common";
+import { Modal } from "components/ui";
 import ShortenUrlForm from "components/forms/ShortenUrlForm";
 import AppLayout from "components/layouts/AppLayout";
 import { FULL_COUNTRIES } from "lib/constants";
@@ -11,7 +11,6 @@ import {
   HiOutlineExternalLink,
   HiOutlineLink,
   HiOutlineLocationMarker,
-  HiOutlineTrash,
 } from "react-icons/hi";
 import useSWR from "swr";
 import { withPageAuthRequired } from "utils";

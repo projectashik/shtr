@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { HiOutlineRefresh } from "react-icons/hi";
+import { Tooltip } from "react-tiny-tooltip";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -41,6 +42,24 @@ const Button = ({
       {children}
       {rightIcon && <span className="ml-1">{rightIcon}</span>}
     </button>
+  );
+};
+interface TooltipProps extends ButtonProps {
+  tooltip: JSX.Element | string;
+  showArrow?: boolean;
+  sideOffset?: number;
+  position?: "top" | "bottom" | "left" | "right";
+}
+export const TooltipButton = ({ ...props }: TooltipProps) => {
+  return (
+    <Tooltip
+      content={props.tooltip}
+      sideOffset={props.sideOffset}
+      showArrow={props.showArrow}
+      side={props.position}
+    >
+      <Button {...props} />
+    </Tooltip>
   );
 };
 

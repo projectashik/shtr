@@ -2,8 +2,10 @@ import { useTheme } from "next-themes";
 import router from "next/router";
 import { HiOutlineHome, HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { RiPaletteLine } from "react-icons/ri";
-import { FiLayers } from "react-icons/fi";
+import { FiLayers, FiLogOut } from "react-icons/fi";
 import { changeTheme } from "./theme";
+import { useUser } from "hooks";
+import logout from "pages/api/auth/logout";
 
 const handleThemeChange = (theme: string | "light" | "dark") => {
   changeTheme(theme);
@@ -22,7 +24,7 @@ export const actions = [
   {
     id: "changeTheme",
     name: "Change Theme",
-    section: "General",
+    section: "Actions",
     shortcut: [],
     keywords: "background, change color,color,change theme,theme,dark,light",
     icon: <RiPaletteLine />,
@@ -53,5 +55,18 @@ export const actions = [
     shortcut: ["l"],
     icon: <HiOutlineSun />,
     perform: () => handleThemeChange("light"),
+  },
+  {
+    // TODO:: Add a logout action
+    id: "logoutAction",
+    name: "Logout",
+    keywords: "logout, sign out",
+    shortcut: [""],
+    icon: <FiLogOut />,
+    perform: () => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { logout } = useUser();
+      logout();
+    },
   },
 ];

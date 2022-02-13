@@ -1,13 +1,16 @@
 import { link } from "@prisma/client";
-import { Button } from "components/ui";
+import { TButton, Modal } from "components/ui";
 import {
   HiClipboardCopy,
   HiOutlineClipboardCopy,
+  HiOutlineKey,
   HiOutlineTrash,
 } from "react-icons/hi";
 import axios from "axios";
 import { toast } from "lib/toast";
 import { useSWRConfig } from "swr";
+import { useState } from "react";
+import { UrlPasswordForm } from "components/forms";
 
 const UrlCard = ({ link }: { link: link }) => {
   const { mutate } = useSWRConfig();
@@ -31,6 +34,8 @@ const UrlCard = ({ link }: { link: link }) => {
     navigator.clipboard.writeText(`${window.location.origin}/${link.slug}`);
     toast({ message: "Copied to clipboard" });
   };
+
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
   return (
     <>
       <div
@@ -56,13 +61,28 @@ const UrlCard = ({ link }: { link: link }) => {
           {link.url}
         </a>
         <div className="mt-2 flex space-x-2">
-          <Button onClick={onDelete} look="danger">
+          <TButton tooltip="Remove short url" onClick={onDelete} look="danger">
             <HiOutlineTrash />
-          </Button>
-          <Button onClick={onCopy} look="alternate">
+          </TButton>
+          <TButton tooltip="Copy short url" onClick={onCopy} look="alternate">
             <HiOutlineClipboardCopy />
-          </Button>
+          </TButton>
+          <TButton
+            tooltip="Set password"
+            onClick={() => setShowPasswordModal(true)}
+            look="alternate"
+          >
+            <HiOutlineKey />
+          </TButton>
         </div>
+        <Modal
+          isOpen={showPasswordModal}
+          setIsOpen={setShowPasswordModal}
+          title="Password Protect Your Short Link"
+          description="User will need to enter password everytime they click the link"
+        >
+          <UrlPasswordForm setIsOpen={setShowPasswordModal} link={link} />
+        </Modal>
       </div>
     </>
   );
