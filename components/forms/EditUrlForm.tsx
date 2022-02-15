@@ -23,7 +23,10 @@ const EditUrlForm = ({
     validationSchema: UpdateLinkSchema,
     onSubmit: async (values) => {
       try {
-        const res = await axios.post(`/api/link/${link.link_id}`, values);
+        const res = await axios.put(`/api/link/${link.link_id}`, {
+          url: values.url,
+          slug: values.slug,
+        });
         if (res.data) {
           toast({ message: "Link updated" });
           setEditLinkOpen(false);

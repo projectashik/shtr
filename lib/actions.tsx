@@ -1,11 +1,9 @@
-import { useTheme } from "next-themes";
+import { useUser } from "hooks";
 import router from "next/router";
+import { FiLayers, FiLogOut } from "react-icons/fi";
 import { HiOutlineHome, HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { RiPaletteLine } from "react-icons/ri";
-import { FiLayers, FiLogOut } from "react-icons/fi";
 import { changeTheme } from "./theme";
-import { useUser } from "hooks";
-import logout from "pages/api/auth/logout";
 
 const handleThemeChange = (theme: string | "light" | "dark") => {
   changeTheme(theme);

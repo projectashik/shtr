@@ -70,14 +70,7 @@ const UrlCard = ({ link }: { link: link }) => {
           {link.url}
         </a>
         <div className="mt-2 flex space-x-2">
-          <TButton
-            tooltip="Remove short url"
-            onClick={openDelete}
-            look="danger"
-          >
-            <HiOutlineTrash />
-          </TButton>
-          <TButton tooltip="Copy short url" onClick={onCopy} look="alternate">
+          <TButton look="primary" tooltip="Copy short url" onClick={onCopy}>
             <HiOutlineClipboardCopy />
           </TButton>
           <TButton
@@ -100,6 +93,13 @@ const UrlCard = ({ link }: { link: link }) => {
             tooltip="Edit url"
           >
             <FiEdit />
+          </TButton>
+          <TButton
+            tooltip="Remove short url"
+            onClick={openDelete}
+            look="danger"
+          >
+            <HiOutlineTrash />
           </TButton>
         </div>
         <Modal

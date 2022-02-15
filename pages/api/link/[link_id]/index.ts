@@ -3,7 +3,7 @@ import handler from "lib/handler";
 import { use_auth } from "lib/middleware";
 import { badRequest, ok, unauthorized } from "lib/response";
 
-handler.post(async (req, res) => {
+handler.put(async (req, res) => {
   await use_auth(req, res);
   const { user_id, isAdmin } = req.auth;
   const { link_id } = req.query;
