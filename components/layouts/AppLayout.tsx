@@ -10,11 +10,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <Layout>
       <header>
-        <nav className="bg-white border-b border-gray-200 dark:border-dark102 px-2 sm:px-4 py-2.5 rounded dark:bg-dark101">
-          <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <nav className="rounded border-b border-gray-200 bg-white px-2 py-2.5 dark:border-dark102 dark:bg-dark101 sm:px-4">
+          <div className="container mx-auto flex flex-wrap items-center justify-between">
             <a href="#" className="flex">
               <LinkSVG />
-              <span className="md:ml-3 ml-1 self-center text-xl  font-semibold whitespace-nowrap dark:text-white">
+              <span className="ml-1 self-center whitespace-nowrap text-xl  font-semibold dark:text-white md:ml-3">
                 Shtr.tk
               </span>
             </a>
@@ -25,7 +25,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           </div>
         </nav>
       </header>
-      <main className="container mx-auto px-2 md:px-0 mt-8">
+      <main className="container mx-auto mt-8 px-2 md:px-0">
         <CommandBar />
         {children}
       </main>

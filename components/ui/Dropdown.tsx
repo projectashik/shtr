@@ -25,13 +25,13 @@ const DropdownButton = ({ children, label, ...props }: DropdownButtonProps) => {
   return (
     <Menu.Button
       as={Button}
-      className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+      className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
       {...props}
     >
       <span className="sr-only">{label}</span>
       {children}
       <HiChevronDown
-        className="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100"
+        className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
         aria-hidden="true"
       />
     </Menu.Button>
@@ -60,7 +60,7 @@ const DropdownBody = ({
       <Menu.Items
         as={as}
         className={classNames(
-          "absolute right-0 z-10 w-56 text-base origin-top-right list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700",
+          "absolute right-0 z-10 w-56 origin-top-right list-none divide-y divide-gray-100 rounded bg-white text-base shadow dark:bg-gray-700",
           className
         )}
       >

@@ -26,7 +26,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div className="max-w-lg mt-5 mx-auto sm:border sm:shadow dark:border-gray-700 rounded-lg p-10">
+    <div className="mx-auto mt-5 max-w-lg rounded-lg p-10 dark:border-gray-700 sm:border sm:shadow">
       <h1 className="font-head text-3xl font-bold">Sign In</h1>
       <form className="mt-5" onSubmit={formik.handleSubmit}>
         <Field

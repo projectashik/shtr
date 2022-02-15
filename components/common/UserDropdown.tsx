@@ -22,7 +22,7 @@ const UserDropdown = () => {
     { label: "Logout", onClick: () => logout(), icon: <HiOutlineLogout /> },
   ];
   return (
-    <Menu as="div" className="ml-4 relative inline-block text-left">
+    <Menu as="div" className="relative ml-4 inline-block text-left">
       <div>
         <Menu.Button as={Button} rightIcon={<HiChevronDown />} look="alternate">
           {user && user.username}
@@ -37,15 +37,15 @@ const UserDropdown = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right z-10 list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-          <div className="py-1 px-1 flex flex-col">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right list-none divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700">
+          <div className="flex flex-col py-1 px-1">
             {dropItems.map((item, index) => (
               <Menu.Item key={index}>
                 <button
                   onClick={() => item.onClick()}
-                  className={`flex items-center rounded-md py-1 sm:py-2 px-4  text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white`}
+                  className={`flex items-center rounded-md py-1 px-4 text-gray-700  hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white sm:py-2`}
                 >
-                  <span className="text-xl mr-2">{item.icon}</span>
+                  <span className="mr-2 text-xl">{item.icon}</span>
                   {item.label}
                 </button>
               </Menu.Item>

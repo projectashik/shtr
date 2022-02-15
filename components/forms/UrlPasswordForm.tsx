@@ -2,6 +2,7 @@ import { link } from "@prisma/client";
 import axios from "axios";
 import { Button, Field } from "components/ui";
 import { useFormik } from "formik";
+import { toast } from "lib/toast";
 import { useState } from "react";
 import { SetPasswordSchema } from "schemas";
 import useSWR from "swr";
@@ -24,13 +25,15 @@ const UrlPasswordForm = ({
       setLoading(true);
       console.log(values);
       try {
-        const res = axios.post(
+        const res = await axios.post(
           `/api/link/${link.link_id as unknown as string}/password`,
           {
             password: values.password,
             confirmPassword: values.confirmPassword,
           }
         );
+        toast({ message: res.data.msg });
+        setIsOpen(false);
       } catch (e: any) {
         console.log(e.response);
       }
@@ -39,7 +42,7 @@ const UrlPasswordForm = ({
   });
   const {} = useSWR("/");
   return (
-    <form onSubmit={formik.handleSubmit} className="space-y-3 mt-4">
+    <form onSubmit={formik.handleSubmit} className="mt-4 space-y-3">
       <Field
         formikHandler={formik}
         label="Password"

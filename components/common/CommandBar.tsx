@@ -1,25 +1,22 @@
 import classNames from "classnames";
 import {
-  KBarPortal,
-  KBarPositioner,
-  KBarAnimator,
-  KBarSearch,
   ActionId,
   ActionImpl,
+  KBarAnimator,
+  KBarPortal,
+  KBarPositioner,
   KBarResults,
+  KBarSearch,
   useMatches,
-  createAction,
 } from "kbar";
-import { useRouter } from "next/router";
 import React, { forwardRef } from "react";
-import { HiOutlineHome } from "react-icons/hi";
 
 const CommandBar = () => {
   return (
     <KBarPortal>
       <KBarPositioner className="bg-dark102 bg-opacity-20 backdrop-blur-sm">
-        <KBarAnimator className="max-w-xl w-full bg-white dark:bg-dark101 dark:text-white rounded-lg shadow-lg">
-          <KBarSearch className="py-3 px-4 text-base w-full box-border outline-none border-none rounded-t-lg bg-gray-50 dark:bg-gray-700 text-dark102 dark:text-white" />
+        <KBarAnimator className="dark:bg-dark101 w-full max-w-xl rounded-lg bg-white shadow-lg dark:text-white">
+          <KBarSearch className="text-dark102 box-border w-full rounded-t-lg border-none bg-gray-50 py-3 px-4 text-base outline-none dark:bg-gray-700 dark:text-white" />
           <RenderResults />
         </KBarAnimator>
       </KBarPositioner>
@@ -34,7 +31,7 @@ function RenderResults() {
       items={results}
       onRender={({ item, active }) =>
         typeof item === "string" ? (
-          <div className="pt-2 px-4 text-xs dark:text-white uppercase opacity-70 dark:opacity-90">
+          <div className="px-4 pt-2 text-xs uppercase opacity-70 dark:text-white dark:opacity-90">
             {item}
           </div>
         ) : (
@@ -75,9 +72,9 @@ const ResultItem = forwardRef(
       <div
         ref={ref}
         className={classNames(
-          "px-4 py-3 border-l-2 flex items-center justify-between cursor-pointer",
+          "flex cursor-pointer items-center justify-between border-l-2 px-4 py-3",
           active
-            ? "bg-gray-100 dark:bg-dark102 border-dark101"
+            ? "border-dark101 dark:bg-dark102 bg-gray-100"
             : "transparent border-transparent text-black dark:text-white"
         )}
       >

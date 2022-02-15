@@ -1,5 +1,4 @@
 import { StatsCard, UrlCard } from "components/common";
-import { Modal } from "components/ui";
 import ShortenUrlForm from "components/forms/ShortenUrlForm";
 import AppLayout from "components/layouts/AppLayout";
 import { FULL_COUNTRIES } from "lib/constants";
@@ -20,7 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <AppLayout>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatsCard
           title="Total Click"
           value={(countTotalClicks(links) || 0).toString()}

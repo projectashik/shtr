@@ -1,16 +1,18 @@
 import { link } from "@prisma/client";
-import { TButton, Modal } from "components/ui";
+import axios from "axios";
+import { EditUrlForm, UrlPasswordForm } from "components/forms";
+import { Button, Modal, TButton } from "components/ui";
+import { toast } from "lib/toast";
+import { useState } from "react";
+import { FiEdit } from "react-icons/fi";
 import {
-  HiClipboardCopy,
   HiOutlineClipboardCopy,
   HiOutlineKey,
   HiOutlineTrash,
+  HiQrcode,
 } from "react-icons/hi";
-import axios from "axios";
-import { toast } from "lib/toast";
 import { useSWRConfig } from "swr";
-import { useState } from "react";
-import { UrlPasswordForm } from "components/forms";
+import QrCode from "./QrCode";
 
 const UrlCard = ({ link }: { link: link }) => {
   const { mutate } = useSWRConfig();
@@ -30,23 +32,30 @@ const UrlCard = ({ link }: { link: link }) => {
     }
   };
 
+  const openDelete = () => {
+    setIsDeleteConfirmOpen(true);
+  };
+
   const onCopy = () => {
     navigator.clipboard.writeText(`${window.location.origin}/${link.slug}`);
     toast({ message: "Copied to clipboard" });
   };
 
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [showQrModalOpen, setShowQrModalOpen] = useState(false);
+  const [editLinkOpen, setEditLinkOpen] = useState(false);
   return (
     <>
       <div
         key={link.link_id}
-        className="my-3 shadow border dark:border-dark102 dark:shadow-gray-800 flex-col p-2 md:p-6 rounded flex"
+        className="dark:border-dark102 my-3 flex flex-col rounded border p-2 shadow dark:shadow-gray-800 md:p-6"
       >
         <p>
           <a
             href={`${window.location.origin}/${link.slug}`}
             target="_blank"
-            className="text-gray-900 font-semibold dark:text-white"
+            className="font-semibold text-gray-900 dark:text-white"
             rel="noopener noreferrer"
           >
             {`${window.location.origin}/${link.slug}`}
@@ -61,7 +70,11 @@ const UrlCard = ({ link }: { link: link }) => {
           {link.url}
         </a>
         <div className="mt-2 flex space-x-2">
-          <TButton tooltip="Remove short url" onClick={onDelete} look="danger">
+          <TButton
+            tooltip="Remove short url"
+            onClick={openDelete}
+            look="danger"
+          >
             <HiOutlineTrash />
           </TButton>
           <TButton tooltip="Copy short url" onClick={onCopy} look="alternate">
@@ -74,6 +87,20 @@ const UrlCard = ({ link }: { link: link }) => {
           >
             <HiOutlineKey />
           </TButton>
+          <TButton
+            onClick={() => setShowQrModalOpen(true)}
+            look="alternate"
+            tooltip="Generate QR Code for the short url"
+          >
+            <HiQrcode />
+          </TButton>
+          <TButton
+            onClick={() => setEditLinkOpen(true)}
+            look="alternate"
+            tooltip="Edit url"
+          >
+            <FiEdit />
+          </TButton>
         </div>
         <Modal
           isOpen={showPasswordModal}
@@ -83,6 +110,39 @@ const UrlCard = ({ link }: { link: link }) => {
         >
           <UrlPasswordForm setIsOpen={setShowPasswordModal} link={link} />
         </Modal>
+
+        <Modal
+          title="Delete Short URL"
+          isOpen={isDeleteConfirmOpen}
+          setIsOpen={setIsDeleteConfirmOpen}
+          description="Are you sure you want to delete this link?"
+        >
+          <div className="mt-4 flex space-x-2">
+            <Button
+              onClick={() => setIsDeleteConfirmOpen(false)}
+              look="alternate"
+            >
+              Cancel
+            </Button>
+            <Button onClick={onDelete} look="danger">
+              Confirm
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          title="Share your qr code for the link"
+          isOpen={showQrModalOpen}
+          setIsOpen={setShowQrModalOpen}
+        >
+          <>{showQrModalOpen && <QrCode url={link.slug} />}</>
+        </Modal>
+
+        <EditUrlForm
+          editLinkOpen={editLinkOpen}
+          setEditLinkOpen={setEditLinkOpen}
+          link={link}
+        />
       </div>
     </>
   );

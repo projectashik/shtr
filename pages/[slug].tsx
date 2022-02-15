@@ -46,12 +46,12 @@ export default function SlugPage({ link }: { link: any }) {
       <div>{!parsedLink && <h1>404 Not Found</h1>}</div>
       {parsedLink && parsedLink.password && (
         <div>
-          <h2 className="text-center text-4xl font-bold mt-10">
+          <h2 className="mt-10 text-center text-4xl font-bold">
             This link is password protected
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="max-w-md my-10 mx-auto p-8 border shadow-3xl rounded dark:border-gray-600 shadow-gray-900"
+            className="shadow-3xl my-10 mx-auto max-w-md rounded border p-8 shadow-gray-900 dark:border-gray-600"
           >
             <Label htmlFor="password">Enter password</Label>
             <Input

@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.3",
     "@prisma/client": "^3.9.1",
+    "@solana/qr-code-styling": "^1.6.0-beta.0",
     "axios": "^0.25.0",
     "bcryptjs": "^2.4.3",
     "classnames": "^2.3.1",
@@ -52,6 +53,8 @@
     "eslint-config-next": "12.0.10",
     "https": "^1.0.0",
     "postcss": "^8.4.6",
+    "prettier": "^2.5.1",
+    "prettier-plugin-tailwindcss": "^0.1.7",
     "prisma": "^3.9.1",
     "tailwindcss": "^3.0.19",
     "typescript": "4.5.5"

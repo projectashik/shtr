@@ -1,6 +1,5 @@
-import { Input, Button } from "components/ui";
+import { Button, Input } from "components/ui";
 import { useShortner } from "hooks";
-import { KeyedMutator } from "swr";
 import { BaseSyntheticEvent, useState } from "react";
 import { useSWRConfig } from "swr";
 const ShortenUrlForm = () => {
@@ -16,14 +15,15 @@ const ShortenUrlForm = () => {
       return;
     }
     await shortner(url);
+    setUrl("");
     mutate("fetch-links");
   };
   return (
     <form
       onSubmit={onSubmit}
-      className="sm:my-10 my-6 shadow border p-4 md:p-6 rounded  dark:border-dark102 dark:shadow-gray-800 "
+      className="dark:border-dark102 my-6 rounded border p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 "
     >
-      <h2 className="text-lg sm:text-xl font-semibold mb-2">
+      <h2 className="mb-2 text-lg font-semibold sm:text-xl">
         Shorten long url
       </h2>
       <div className="flex items-center ">

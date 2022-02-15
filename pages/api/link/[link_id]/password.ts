@@ -1,9 +1,8 @@
-import { use_auth } from "lib/middleware";
-import { badRequest, ok } from "lib/response";
-import { NextApiResponse } from "next";
-import { NextApiRequestExtended } from "types";
+import { hashPassword } from "lib/crypto";
 import prisma from "lib/db";
 import handler from "lib/handler";
+import { use_auth } from "lib/middleware";
+import { badRequest, ok } from "lib/response";
 
 handler.post(async (req, res) => {
   use_auth(req, res);
@@ -18,6 +17,7 @@ handler.post(async (req, res) => {
     return badRequest(res, "Passwords do not match");
   }
   try {
+    const newPassword = hashPassword(password);
     const { link_id } = req.query;
     const link = await prisma.link.findUnique({
       where: {
@@ -33,7 +33,7 @@ handler.post(async (req, res) => {
               link_id: +link_id,
             },
             data: {
-              password,
+              password: newPassword,
             },
           });
           if (isNew) {

@@ -5,7 +5,7 @@ const Label = ({ ...props }: LabelProps) => {
   return (
     <label
       className={classNames(
-        "block mb-2  font-medium text-gray-900 dark:text-gray-300",
+        "mb-2 block  font-medium text-gray-900 dark:text-gray-300",
         props.className
       )}
       {...props}

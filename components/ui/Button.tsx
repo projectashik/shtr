@@ -22,9 +22,9 @@ const Button = ({
     <button
       disabled={loading}
       className={classNames(
-        "text-white disabled:opacity-70 flex items-center focus:ring-4 font-medium rounded-lg px-3 py-2 text-sm sm:text-base sm:px-5 sm:py-2.5 text-center ",
+        "flex items-center rounded-lg px-3 py-2 text-center text-sm font-medium text-white focus:ring-4 disabled:opacity-70 sm:px-5 sm:py-2.5 sm:text-base ",
         look === "alternate" &&
-          "text-gray-500 border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-2 focus:ring-primary-700 focus:text-primary-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700",
+          "border border-gray-200 text-gray-500 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:text-primary-700 focus:ring-2 focus:ring-primary-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white",
         look === "primary" &&
           "bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800",
         look === "danger" &&

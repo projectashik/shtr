@@ -1,7 +1,8 @@
-import handler from "lib/handler";
+import { checkPassword } from "lib/crypto";
 import prisma from "lib/db";
-import { badRequest, notFound, ok } from "lib/response";
+import handler from "lib/handler";
 import { linkClickQuery } from "lib/queries";
+import { badRequest, notFound, ok } from "lib/response";
 
 handler.post(async (req, res) => {
   const { link_id, password } = req.body;
@@ -13,7 +14,7 @@ handler.post(async (req, res) => {
   if (!link) {
     return notFound(res, "Link not found");
   }
-  if (link.password !== password) {
+  if (!checkPassword(password, link.password as string)) {
     return badRequest(res, "Password is incorrect");
   }
   try {

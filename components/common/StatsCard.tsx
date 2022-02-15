@@ -8,17 +8,17 @@ const StatsCard = ({
   icon: JSX.Element;
 }) => {
   return (
-    <div className="shadow border dark:border-dark102 dark:shadow-gray-800 p-2 md:p-6 rounded flex items-center ">
+    <div className="dark:border-dark102 flex items-center rounded border p-2 shadow dark:shadow-gray-800 md:p-6  ">
       <div>
-        <div className="hidden sm:block md:text-4xl text-2xl  text-white font-extralight bg-primary-500 p-2 rounded">
+        <div className="bg-primary-500 hidden rounded p-2  text-2xl font-extralight text-white sm:block md:text-4xl">
           {icon}
         </div>
       </div>
-      <div className="flex flex-col ml-4">
-        <h2 className="text-md leading-none md:text-xl font-semibold text-transparent bg-clip-text  bg-gradient-to-r from-primary-600 to-blue-600 dark:from-primary-500 dark:to-blue-500">
+      <div className="ml-4 flex flex-col">
+        <h2 className="text-md from-primary-600 dark:from-primary-500 bg-gradient-to-r to-blue-600 bg-clip-text  font-semibold leading-none text-transparent dark:to-blue-500 md:text-xl">
           {title}
         </h2>
-        <p className="text-md md:text-xl font-semibold text-dark101 dark:text-white">
+        <p className="text-md text-dark101 font-semibold dark:text-white md:text-xl">
           {value}
         </p>
       </div>

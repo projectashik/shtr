@@ -15,7 +15,7 @@ const Input = ({ formikHandler, ...props }: InputProps) => {
       id={props.id}
       name={props.id}
       className={cn(
-        "bg-gray-50 border outline-none border-gray-300 text-gray-900  rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-primary-500 block w-full sm:p-2.5 p-2 text-sm md:text-base dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+        "focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-500 dark:focus:ring-primary-500 block  w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 outline-none focus:ring-1 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 sm:p-2.5 md:text-base",
         props.className
       )}
     />
