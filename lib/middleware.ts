@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 import { NextApiRequestExtended } from "types";
 import { getAuthToken } from "./auth";
 import { unauthorized } from "./response";

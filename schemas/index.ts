@@ -22,3 +22,8 @@ export const UpdateLinkSchema = object().shape({
   url: string().url().required("The url field is required"),
   slug: string().required("The slug field is required"),
 });
+
+export const CreateUserSchema = object().shape({
+  username: string().required("The username field is required"),
+  password: string().required("The password field is required"),
+});

@@ -1,17 +1,19 @@
 import { link } from "@prisma/client";
 import axios from "axios";
-import { Button, Field } from "components/ui";
+import { Field, Form, Modal } from "components/ui";
 import { useFormik } from "formik";
 import { toast } from "lib/toast";
 import { useState } from "react";
 import { SetPasswordSchema } from "schemas";
-import useSWR from "swr";
+import { mutate } from "swr";
 
 const UrlPasswordForm = ({
   setIsOpen,
+  isOpen,
   link,
 }: {
   link: link;
+  isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) => {
   const [loading, setLoading] = useState(false);
@@ -32,6 +34,7 @@ const UrlPasswordForm = ({
             confirmPassword: values.confirmPassword,
           }
         );
+        mutate("/api/links");
         toast({ message: res.data.msg });
         setIsOpen(false);
       } catch (e: any) {
@@ -40,35 +43,31 @@ const UrlPasswordForm = ({
       setLoading(false);
     },
   });
-  const {} = useSWR("/");
   return (
-    <form onSubmit={formik.handleSubmit} className="mt-4 space-y-3">
-      <Field
-        formikHandler={formik}
-        label="Password"
-        id="password"
-        type="password"
-      />
-      <Field
-        formikHandler={formik}
-        label="Confirm Password"
-        id="confirmPassword"
-        type="password"
-      />
-      <div className="flex gap-4">
-        <Button look="danger" type="submit">
-          {link.password ? "Update" : "Set"} Password
-        </Button>
-        <Button
-          look="alternate"
-          onClick={() => {
-            setIsOpen(false);
-          }}
-        >
-          Cancel
-        </Button>
-      </div>
-    </form>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      title="Password Protect Your Short Link"
+      description="User will need to enter password everytime they click the link"
+      confirmText={link.password ? "Update Password" : "Set Password"}
+      onConfirm={formik.handleSubmit}
+      loading={loading}
+    >
+      <Form formik={formik} className="mt-4 space-y-3">
+        <Field
+          formikHandler={formik}
+          label="Password"
+          id="password"
+          type="password"
+        />
+        <Field
+          formikHandler={formik}
+          label="Confirm Password"
+          id="confirmPassword"
+          type="password"
+        />
+      </Form>
+    </Modal>
   );
 };
 

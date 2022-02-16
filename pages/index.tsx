@@ -2,7 +2,7 @@ import { StatsCard, UrlCard } from "components/common";
 import ShortenUrlForm from "components/forms/ShortenUrlForm";
 import AppLayout from "components/layouts/AppLayout";
 import { FULL_COUNTRIES } from "lib/constants";
-import { linksFetcher } from "lib/fetchers";
+import { fetcher } from "lib/fetchers";
 import { countTotalClicks, getTopCountry, getTopReferral } from "lib/helper";
 import type { NextPage } from "next";
 import {
@@ -15,7 +15,7 @@ import useSWR from "swr";
 import { withPageAuthRequired } from "utils";
 
 const Home: NextPage = () => {
-  const { data: links } = useSWR<any[]>("fetch-links", linksFetcher);
+  const { data: links } = useSWR<any[]>("/api/links", fetcher);
 
   return (
     <AppLayout>

@@ -1,18 +1,16 @@
-import { GetServerSidePropsContext } from "next";
-import prisma from "lib/db";
 import { link } from "@prisma/client";
-import Head from "next/head";
-import { getClientInfo } from "lib/requests";
-import { BaseSyntheticEvent, useState } from "react";
 import axios from "axios";
+import Layout from "components/layouts/Layout";
+import FullLogo from "components/logos/full";
+import { Button } from "components/ui";
 import Input from "components/ui/Input";
 import Label from "components/ui/Label";
-import Layout from "components/layouts/Layout";
-import { useRouter } from "next/router";
+import prisma from "lib/db";
 import { linkClickQuery } from "lib/queries";
-import { Button } from "components/ui";
+import { GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
+import { BaseSyntheticEvent, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
-import FullLogo from "components/logos/full";
 
 export default function SlugPage({ link }: { link: any }) {
   const parsedLink: link = JSON.parse(link);
@@ -30,6 +28,7 @@ export default function SlugPage({ link }: { link: any }) {
       const res = await axios.post("/api/link/secured", {
         link_id: parsedLink.link_id,
         password,
+        ref: document.referrer,
       });
       if (res.data) {
         setLoading(false);
@@ -51,7 +50,7 @@ export default function SlugPage({ link }: { link: any }) {
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="shadow-3xl my-10 mx-auto max-w-md rounded border p-8 shadow-gray-900 dark:border-gray-600"
+            className="shadow-3xl dark:bg-dark102 my-10 mx-auto max-w-md rounded border bg-white p-8 shadow-gray-900 dark:border-gray-600"
           >
             <Label htmlFor="password">Enter password</Label>
             <Input

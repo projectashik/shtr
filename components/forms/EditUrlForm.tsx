@@ -1,8 +1,9 @@
 import { link } from "@prisma/client";
 import axios from "axios";
-import { Button, Field, Modal } from "components/ui";
+import { Field, Form, Modal } from "components/ui";
 import { useFormik } from "formik";
 import { toast } from "lib/toast";
+import { useState } from "react";
 import { UpdateLinkSchema } from "schemas";
 import { mutate } from "swr";
 
@@ -15,6 +16,7 @@ const EditUrlForm = ({
   editLinkOpen: boolean;
   setEditLinkOpen: (value: boolean) => void;
 }) => {
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
       url: link.url,
@@ -22,15 +24,16 @@ const EditUrlForm = ({
     },
     validationSchema: UpdateLinkSchema,
     onSubmit: async (values) => {
+      setLoading(true);
       try {
         const res = await axios.put(`/api/link/${link.link_id}`, {
           url: values.url,
           slug: values.slug,
         });
         if (res.data) {
+          mutate("/api/links");
           toast({ message: "Link updated" });
           setEditLinkOpen(false);
-          mutate("fetch-links");
         }
       } catch (e: any) {
         const error = e.response.data;
@@ -38,6 +41,7 @@ const EditUrlForm = ({
           formik.setFieldError("slug", "Slug already exist");
         }
       }
+      setLoading(false);
     },
   });
   return (
@@ -46,8 +50,11 @@ const EditUrlForm = ({
       description="Update the url and alias aka slug"
       isOpen={editLinkOpen}
       setIsOpen={setEditLinkOpen}
+      confirmText="Update Link"
+      onConfirm={formik.handleSubmit}
+      loading={loading}
     >
-      <form onSubmit={formik.handleSubmit} className="space-y-4">
+      <Form formik={formik} className="space-y-4">
         <Field label="URL" formikHandler={formik} id="url" />
         <div>
           <Field label="Slug/Alias" formikHandler={formik} id="slug" />
@@ -55,13 +62,7 @@ const EditUrlForm = ({
             Short url is: {`${window.origin}/${formik.values.slug}`}
           </span>
         </div>
-        <div className="mt-4 flex space-x-2">
-          <Button type="submit">Update</Button>
-          <Button look="alternate" onClick={() => setEditLinkOpen(false)}>
-            Cancel
-          </Button>
-        </div>
-      </form>
+      </Form>
     </Modal>
   );
 };

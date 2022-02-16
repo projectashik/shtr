@@ -1,8 +1,8 @@
-import handler from "lib/handler";
-import prisma from "lib/db";
-import { badRequest, ok, unauthorized } from "lib/response";
-import { use_auth } from "lib/middleware";
 import { hashPassword } from "lib/crypto";
+import prisma from "lib/db";
+import handler from "lib/handler";
+import { use_auth } from "lib/middleware";
+import { badRequest, ok, unauthorized } from "lib/response";
 
 handler.get(async (req, res) => {
   await use_auth(req, res);
@@ -11,14 +11,16 @@ handler.get(async (req, res) => {
     if (is_admin) {
       const users = await prisma.user.findMany({
         orderBy: {
-          created_at: "desc",
+          created_at: "asc",
         },
       });
+      console.log(users);
       return ok(res, users);
     } else {
       return unauthorized(res);
     }
   } catch (e: any) {
+    console.log(e);
     return badRequest(res, "");
   }
 });

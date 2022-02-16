@@ -4,10 +4,7 @@ import { ok } from "lib/response";
 import { NextApiResponse } from "next";
 import { NextApiRequestExtended } from "types";
 
-export default function handler(
-  req: NextApiRequestExtended,
-  res: NextApiResponse
-) {
+const handler = (req: NextApiRequestExtended, res: NextApiResponse) => {
   const cookie = serialize(AUTH_COOKIE_NAME, "", {
     path: "/",
     httpOnly: true,
@@ -16,4 +13,6 @@ export default function handler(
 
   res.setHeader("Set-Cookie", [cookie]);
   return ok(res);
-}
+};
+
+export default handler;

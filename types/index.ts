@@ -1,3 +1,4 @@
+import { link, user } from "@prisma/client";
 import { NextApiRequest } from "next";
 
 export interface NextApiRequestExtended extends NextApiRequest {
@@ -10,4 +11,8 @@ export interface NextApiRequestExtended extends NextApiRequest {
         iat: number;
       }
     | null;
+}
+
+export interface LinkWithUser extends link {
+  user: user;
 }

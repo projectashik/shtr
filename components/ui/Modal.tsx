@@ -6,9 +6,14 @@ import { Button } from ".";
 interface ModalProps {
   title: string;
   description?: string;
-  children: JSX.Element;
+  children?: JSX.Element;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  onConfirm?: () => void;
+  confirmText?: string;
+  confirmType?: "button" | "submit" | "reset" | undefined;
+  confirmLook?: "primary" | "alternate" | "danger";
+  loading?: boolean;
 }
 
 const Modal = ({
@@ -16,14 +21,22 @@ const Modal = ({
   description,
   children,
   isOpen,
+  onConfirm,
   setIsOpen,
+  confirmType = "submit",
+  loading,
+  confirmText = "Confirm",
+  confirmLook = "primary",
 }: ModalProps) => {
+  const onClose = () => {
+    setIsOpen(false);
+  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
         className="fixed inset-0 z-10 overflow-y-auto "
         open={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={onClose}
       >
         <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
@@ -78,6 +91,21 @@ const Modal = ({
                 )}
 
                 <div className="mt-2">{children}</div>
+                {onConfirm && (
+                  <div className="mt-4 flex space-x-2">
+                    <Button
+                      type={confirmType}
+                      loading={loading}
+                      look={confirmLook}
+                      onClick={onConfirm}
+                    >
+                      {confirmText || "Confirm"}
+                    </Button>
+                    <Button look="alternate" onClick={onClose}>
+                      Cancel
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </Transition.Child>

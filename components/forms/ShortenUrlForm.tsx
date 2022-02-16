@@ -16,12 +16,12 @@ const ShortenUrlForm = () => {
     }
     await shortner(url);
     setUrl("");
-    mutate("fetch-links");
+    mutate("/api/links");
   };
   return (
     <form
       onSubmit={onSubmit}
-      className="dark:border-dark102 my-6 rounded border p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 "
+      className="dark:bg-dark102 dark:border-dark102 my-6 rounded border bg-white p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 "
     >
       <h2 className="mb-2 text-lg font-semibold sm:text-xl">
         Shorten long url

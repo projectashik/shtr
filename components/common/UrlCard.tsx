@@ -1,7 +1,7 @@
-import { link } from "@prisma/client";
 import axios from "axios";
 import { EditUrlForm, UrlPasswordForm } from "components/forms";
-import { Button, Modal, TButton } from "components/ui";
+import { Modal, TButton } from "components/ui";
+import { useUser } from "hooks";
 import { toast } from "lib/toast";
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
@@ -12,24 +12,29 @@ import {
   HiQrcode,
 } from "react-icons/hi";
 import { useSWRConfig } from "swr";
+import { LinkWithUser } from "types";
 import QrCode from "./QrCode";
 
-const UrlCard = ({ link }: { link: link }) => {
+const UrlCard = ({ link }: { link: LinkWithUser }) => {
   const { mutate } = useSWRConfig();
+  const { user } = useUser();
   const onDelete = async () => {
+    setDeleteLoading(true);
     try {
-      const res = await axios.delete("/api/links", {
+      const res = await axios.delete("/api/link/delete", {
         data: {
           slug: link.slug,
         },
       });
       if (res.data) {
         toast({ message: "Deleted Link" });
-        mutate("fetch-links");
+        setIsDeleteConfirmOpen(false);
+        mutate("/api/links");
       }
     } catch (e: any) {
       toast({ message: "Error deleting link" });
     }
+    setDeleteLoading(false);
   };
 
   const openDelete = () => {
@@ -45,11 +50,12 @@ const UrlCard = ({ link }: { link: link }) => {
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [showQrModalOpen, setShowQrModalOpen] = useState(false);
   const [editLinkOpen, setEditLinkOpen] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   return (
     <>
       <div
         key={link.link_id}
-        className="dark:border-dark102 my-3 flex flex-col rounded border p-2 shadow dark:shadow-gray-800 md:p-6"
+        className="dark:border-dark102 dark:bg-dark102 my-3 flex flex-col rounded border bg-white p-2 shadow dark:shadow-gray-800 md:p-6"
       >
         <p>
           <a
@@ -69,6 +75,9 @@ const UrlCard = ({ link }: { link: link }) => {
         >
           {link.url}
         </a>
+        {user && user.is_admin && (
+          <span className="text-gray-600">Created by {link.user.username}</span>
+        )}
         <div className="mt-2 flex space-x-2">
           <TButton look="primary" tooltip="Copy short url" onClick={onCopy}>
             <HiOutlineClipboardCopy />
@@ -102,33 +111,21 @@ const UrlCard = ({ link }: { link: link }) => {
             <HiOutlineTrash />
           </TButton>
         </div>
-        <Modal
+        <UrlPasswordForm
           isOpen={showPasswordModal}
           setIsOpen={setShowPasswordModal}
-          title="Password Protect Your Short Link"
-          description="User will need to enter password everytime they click the link"
-        >
-          <UrlPasswordForm setIsOpen={setShowPasswordModal} link={link} />
-        </Modal>
+          link={link}
+        />
 
         <Modal
           title="Delete Short URL"
+          confirmText="Confirm"
+          onConfirm={onDelete}
           isOpen={isDeleteConfirmOpen}
+          confirmLook="danger"
           setIsOpen={setIsDeleteConfirmOpen}
           description="Are you sure you want to delete this link?"
-        >
-          <div className="mt-4 flex space-x-2">
-            <Button
-              onClick={() => setIsDeleteConfirmOpen(false)}
-              look="alternate"
-            >
-              Cancel
-            </Button>
-            <Button onClick={onDelete} look="danger">
-              Confirm
-            </Button>
-          </div>
-        </Modal>
+        ></Modal>
 
         <Modal
           title="Share your qr code for the link"

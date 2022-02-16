@@ -15,8 +15,8 @@ const CommandBar = () => {
   return (
     <KBarPortal>
       <KBarPositioner className="bg-dark102 bg-opacity-20 backdrop-blur-sm">
-        <KBarAnimator className="dark:bg-dark101 w-full max-w-xl rounded-lg bg-white shadow-lg dark:text-white">
-          <KBarSearch className="text-dark102 box-border w-full rounded-t-lg border-none bg-gray-50 py-3 px-4 text-base outline-none dark:bg-gray-700 dark:text-white" />
+        <KBarAnimator className="w-full max-w-xl rounded-lg bg-white shadow-lg dark:bg-dark101 dark:text-white">
+          <KBarSearch className="box-border w-full rounded-t-lg border-none bg-gray-50 py-3 px-4 text-base text-dark102 outline-none dark:bg-gray-700 dark:text-white" />
           <RenderResults />
         </KBarAnimator>
       </KBarPositioner>
@@ -74,7 +74,7 @@ const ResultItem = forwardRef(
         className={classNames(
           "flex cursor-pointer items-center justify-between border-l-2 px-4 py-3",
           active
-            ? "border-dark101 dark:bg-dark102 bg-gray-100"
+            ? "border-dark101 bg-gray-100 dark:bg-dark102"
             : "transparent border-transparent text-black dark:text-white"
         )}
       >

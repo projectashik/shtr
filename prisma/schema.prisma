@@ -28,7 +28,7 @@ model link {
   slug       String    @unique @db.VarChar(255)
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   password   String?   @db.VarChar(60)
-  user       user      @relation(fields: [user_id], references: [user_id])
+  user       user      @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   clicks     click[]
 
   @@index([user_id], name: "link_user_id_idx")
@@ -45,7 +45,7 @@ model click {
   ip         String?   @db.VarChar(50)
   referral   String?   @db.VarChar(255)
   country    String?   @db.VarChar(255)
-  link       link      @relation(fields: [link_id], references: [link_id])
+  link       link      @relation(fields: [link_id], references: [link_id], onDelete: Cascade)
 
   @@index([link_id], name: "click_link_id_idx")
 }

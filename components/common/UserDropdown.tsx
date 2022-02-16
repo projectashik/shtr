@@ -3,6 +3,7 @@ import { Button } from "components/ui";
 import { useUser } from "hooks";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
+import { FiSettings } from "react-icons/fi";
 import {
   HiChevronDown,
   HiOutlineLogout,
@@ -18,6 +19,11 @@ const UserDropdown = () => {
       label: "Profile",
       onClick: () => router.push("/profile"),
       icon: <HiOutlineUserCircle />,
+    },
+    {
+      label: "Settings",
+      onClick: () => router.push("/settings/accounts"),
+      icon: <FiSettings />,
     },
     { label: "Logout", onClick: () => logout(), icon: <HiOutlineLogout /> },
   ];
