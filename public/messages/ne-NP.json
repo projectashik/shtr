@@ -1,0 +1,158 @@
+{
+  "JqiqNj": [
+    {
+      "type": 0,
+      "value": "Something went wrong"
+    }
+  ],
+  "label.analytics": [
+    {
+      "type": 0,
+      "value": "विश्लेषण"
+    }
+  ],
+  "label.cancel": [
+    {
+      "type": 0,
+      "value": "रद्द करें"
+    }
+  ],
+  "label.confirmPassword": [
+    {
+      "type": 0,
+      "value": "पासवर्ड की पुष्टि करें"
+    }
+  ],
+  "label.copiedUrlToClipboard": [
+    {
+      "type": 0,
+      "value": "Copied Url to clipboard"
+    }
+  ],
+  "label.copyShortUrl": [
+    {
+      "type": 0,
+      "value": "Copy short URL"
+    }
+  ],
+  "label.createdBy": [
+    {
+      "type": 0,
+      "value": "Created By"
+    }
+  ],
+  "label.editUrl": [
+    {
+      "type": 0,
+      "value": "Edit url"
+    }
+  ],
+  "label.generateQR": [
+    {
+      "type": 0,
+      "value": "Generate QR Code for the short url"
+    }
+  ],
+  "label.logout": [
+    {
+      "type": 0,
+      "value": "Logout"
+    }
+  ],
+  "label.password": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "label.pasteLongUrl": [
+    {
+      "type": 0,
+      "value": "Paste long URL here"
+    }
+  ],
+  "label.profile": [
+    {
+      "type": 0,
+      "value": "Profile"
+    }
+  ],
+  "label.removePassword": [
+    {
+      "type": 0,
+      "value": "Remove Password"
+    }
+  ],
+  "label.removeShortUrl": [
+    {
+      "type": 0,
+      "value": "Remove short url"
+    }
+  ],
+  "label.setPassword": [
+    {
+      "type": 0,
+      "value": "Set Password"
+    }
+  ],
+  "label.settings": [
+    {
+      "type": 0,
+      "value": "Settings"
+    }
+  ],
+  "label.shortenLongUrl": [
+    {
+      "type": 0,
+      "value": "Shorten long URL"
+    }
+  ],
+  "label.shortenUrl": [
+    {
+      "type": 0,
+      "value": "Shorten URL"
+    }
+  ],
+  "label.topCountry": [
+    {
+      "type": 0,
+      "value": "Top Country"
+    }
+  ],
+  "label.topReferral": [
+    {
+      "type": 0,
+      "value": "Top Referral"
+    }
+  ],
+  "label.totalClick": [
+    {
+      "type": 0,
+      "value": "Total Click"
+    }
+  ],
+  "label.updatePassword": [
+    {
+      "type": 0,
+      "value": "Update Password"
+    }
+  ],
+  "label.yourLinks": [
+    {
+      "type": 0,
+      "value": "Your Links"
+    }
+  ],
+  "modal.description.setPassword": [
+    {
+      "type": 0,
+      "value": "User will need to enter password everytime they click the link"
+    }
+  ],
+  "modal.title.setPassword": [
+    {
+      "type": 0,
+      "value": "Password protect your short link"
+    }
+  ]
+}

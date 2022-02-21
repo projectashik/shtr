@@ -3,7 +3,7 @@ import { ErrorMessage, Input, Label } from ".";
 
 interface FieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   formikHandler: FormikProps<any>;
-  label?: string;
+  label?: React.ReactNode;
   containerClassName?: string;
 }
 const Field = ({

@@ -1,7 +1,7 @@
+import { user } from "@prisma/client";
+import { useUser } from "hooks";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useUser } from "hooks";
-import { user } from "@prisma/client";
 
 /**
  * @ignore
@@ -12,7 +12,7 @@ export interface WithPageAuthRequiredProps {
 }
 
 export type IWithPageAuthRequired = <P extends WithPageAuthRequiredProps>(
-  Component: React.ComponentType<P>,
+  Component: any,
   options?: { [key: string]: any }
 ) => React.FC<Omit<P, "user">>;
 const WithPageAuthRequired: IWithPageAuthRequired = (

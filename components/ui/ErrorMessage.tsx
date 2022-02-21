@@ -1,4 +1,5 @@
-import { ErrorMessageProps, FormikConfig, FormikProps } from "formik";
+import { ErrorMessageProps, FormikProps } from "formik";
+import { FormattedMessage } from "react-intl";
 
 interface IErrorMessageProps extends ErrorMessageProps {
   formikHandler: FormikProps<any>;
@@ -9,11 +10,25 @@ const ErrorMessage = ({
   name,
   ...props
 }: IErrorMessageProps) => {
+  const messages: { [key: string]: React.ReactNode } = {
+    "error.urlRequired": (
+      <FormattedMessage
+        id="error.urlRequired"
+        defaultMessage="The URL field is required"
+      />
+    ),
+    "error.urlInvalid": (
+      <FormattedMessage
+        id="error.urlInvalid"
+        defaultMessage="Enter valid URL"
+      />
+    ),
+  };
   return (
     <>
       {formikHandler.touched[name] && formikHandler.errors[name] && (
         <div className="text-red-500 dark:text-red-300">
-          <div>{formikHandler.errors[name]}</div>
+          <div>{messages[formikHandler.errors[name] as string]}</div>
         </div>
       )}
     </>

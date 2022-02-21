@@ -4,27 +4,19 @@ import { Modal, TButton } from "components/ui";
 import { useUser } from "hooks";
 import { toast } from "lib/toast";
 import { useRouter } from "next/router";
-import { BaseSyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import {
-  HiChartBar,
   HiOutlineClipboardCopy,
   HiOutlineKey,
   HiOutlineTrash,
   HiQrcode,
 } from "react-icons/hi";
-import { FormattedMessage } from "react-intl";
 import { useSWRConfig } from "swr";
 import { LinkWithUser } from "types";
 import QrCode from "./QrCode";
 
-const UrlCard = ({
-  link,
-  onChange,
-}: {
-  link: LinkWithUser;
-  onChange: (e: BaseSyntheticEvent, link_id: number) => void;
-}) => {
+const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
   const { mutate } = useSWRConfig();
   const { user } = useUser();
   const router = useRouter();
@@ -39,7 +31,7 @@ const UrlCard = ({
       if (res.data) {
         toast({ message: "Deleted Link" });
         setIsDeleteConfirmOpen(false);
-        mutate("/api/links");
+        mutate(`/api/link/${link.link_id}/fetch`);
       }
     } catch (e: any) {
       toast({ message: "Error deleting link" });
@@ -52,15 +44,8 @@ const UrlCard = ({
   };
 
   const onCopy = () => {
-    navigator.clipboard.writeText(`${window.location.origin}/${link.slug}`);
-    toast({
-      message: (
-        <FormattedMessage
-          id="label.copiedUrlToClipboard"
-          defaultMessage="Copied Url to clipboard"
-        />
-      ),
-    });
+    navigator.clipboard.writeText(`${router.basePath}/${link.slug}`);
+    toast({ message: "Copied to clipboard" });
   };
 
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -68,6 +53,12 @@ const UrlCard = ({
   const [showQrModalOpen, setShowQrModalOpen] = useState(false);
   const [editLinkOpen, setEditLinkOpen] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const origin =
+    typeof window !== "undefined" && window.location.origin
+      ? window.location.origin
+      : "";
+
   return (
     <>
       <div
@@ -78,16 +69,16 @@ const UrlCard = ({
           <div>
             <p>
               <a
-                href={`${window.location.origin}/${link.slug}`}
+                href={`/${link.slug}`}
                 target="_blank"
                 className="font-semibold text-gray-900 dark:text-white"
                 rel="noopener noreferrer"
               >
-                {`${window.location.origin}/${link.slug}`}
+                {`${origin}/${link.slug}`}
               </a>
             </p>
             <a
-              href={`${window.location.origin}/${link.slug}`}
+              href={`/${link.slug}`}
               target="_blank"
               className="text-gray-500 dark:text-gray-500"
               rel="noopener noreferrer"
@@ -95,41 +86,16 @@ const UrlCard = ({
               {link.url}
             </a>
           </div>
-          <input
-            type="checkbox"
-            className="h-5 w-5"
-            onChange={(e) => onChange(e, link.link_id)}
-          />
         </div>
         {user && user.is_admin && (
-          <span className="text-gray-600">
-            <FormattedMessage
-              id="label.createdBy"
-              defaultMessage="Created By"
-            />{" "}
-            {link.user.username}
-          </span>
+          <span className="text-gray-600">Created by {link.user.username}</span>
         )}
         <div className="mt-2 flex space-x-2">
-          <TButton
-            look="primary"
-            tooltip={
-              <FormattedMessage
-                id="label.copyShortUrl"
-                defaultMessage="Copy short URL"
-              />
-            }
-            onClick={onCopy}
-          >
+          <TButton look="primary" tooltip="Copy short url" onClick={onCopy}>
             <HiOutlineClipboardCopy />
           </TButton>
           <TButton
-            tooltip={
-              <FormattedMessage
-                id="label.setPassword"
-                defaultMessage="Set Password"
-              />
-            }
+            tooltip="Set password"
             onClick={() => setShowPasswordModal(true)}
             look="alternate"
           >
@@ -138,42 +104,19 @@ const UrlCard = ({
           <TButton
             onClick={() => setShowQrModalOpen(true)}
             look="alternate"
-            tooltip={
-              <FormattedMessage
-                id="label.generateQR"
-                defaultMessage="Generate QR Code for the short url"
-              />
-            }
+            tooltip="Generate QR Code for the short url"
           >
             <HiQrcode />
           </TButton>
           <TButton
             onClick={() => setEditLinkOpen(true)}
             look="alternate"
-            tooltip={
-              <FormattedMessage id="label.editUrl" defaultMessage="Edit url" />
-            }
+            tooltip="Edit url"
           >
             <FiEdit />
           </TButton>
           <TButton
-            onClick={() => router.push(`/link/${link.link_id}`)}
-            tooltip={
-              <FormattedMessage
-                id="label.analytics"
-                defaultMessage="Analytics"
-              />
-            }
-          >
-            <HiChartBar />
-          </TButton>
-          <TButton
-            tooltip={
-              <FormattedMessage
-                id="label.removeShortUrl"
-                defaultMessage="Remove short url"
-              />
-            }
+            tooltip="Remove short url"
             onClick={openDelete}
             look="danger"
           >
@@ -214,4 +157,4 @@ const UrlCard = ({
   );
 };
 
-export default UrlCard;
+export default UrlCardSingle;

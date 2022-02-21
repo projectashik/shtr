@@ -1,4 +1,4 @@
-import { useUser } from "hooks";
+import axios from "axios";
 import router from "next/router";
 import { FiLayers, FiLogOut, FiUser } from "react-icons/fi";
 import { HiOutlineHome, HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
@@ -61,10 +61,9 @@ export const actions = [
     keywords: "logout, sign out",
     shortcut: [""],
     icon: <FiLogOut />,
-    perform: () => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { logout } = useUser();
-      logout();
+    perform: async () => {
+      await axios.post("/api/auth/logout");
+      router.reload();
     },
   },
   {

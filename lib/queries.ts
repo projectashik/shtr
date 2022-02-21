@@ -1,7 +1,5 @@
-import link from "next/link";
-import { NextApiRequestExtended } from "types";
-import { getClientInfo } from "./requests";
 import prisma from "lib/db";
+import { getClientInfo } from "./requests";
 
 export const linkClickQuery = async (req: any, link_id: number) => {
   const {

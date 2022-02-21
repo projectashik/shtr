@@ -32,6 +32,7 @@ const EditUrlForm = ({
         });
         if (res.data) {
           mutate("/api/links");
+          mutate(`/api/link/${link.link_id}/fetch`);
           toast({ message: "Link updated" });
           setEditLinkOpen(false);
         }

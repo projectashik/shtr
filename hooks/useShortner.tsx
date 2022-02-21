@@ -10,7 +10,7 @@ const useShortner = () => {
   async function shortner(url: string) {
     setCreateLoading(true);
     setCreateError("");
-    const slug = makeSlug(8);
+    const slug = makeSlug();
     try {
       const res = await axios.post("/api/link/shorten", {
         url,

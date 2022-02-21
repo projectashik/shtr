@@ -1,16 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { FiX } from "react-icons/fi";
+import { FormattedMessage } from "react-intl";
 import { Button } from ".";
 
 interface ModalProps {
-  title: string;
-  description?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
   children?: JSX.Element;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   onConfirm?: () => void;
-  confirmText?: string;
+  confirmText?: React.ReactNode;
   confirmType?: "button" | "submit" | "reset" | undefined;
   confirmLook?: "primary" | "alternate" | "danger";
   loading?: boolean;
@@ -38,7 +39,7 @@ const Modal = ({
         open={isOpen}
         onClose={onClose}
       >
-        <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -66,7 +67,7 @@ const Modal = ({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="text-dark101 dark:bg-dark101 inline-block transform overflow-hidden rounded-lg border border-gray-600 bg-white text-left align-bottom shadow-xl transition-all dark:text-white sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
+            <div className="text-dark101 dark:bg-dark101 my:4 inline-block transform overflow-hidden rounded-lg border border-gray-600 bg-white text-left align-bottom shadow-xl transition-all dark:text-white sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
               <Button
                 look="alternate"
                 className="fixed right-0.5 rounded-full ring-0"
@@ -102,7 +103,10 @@ const Modal = ({
                       {confirmText || "Confirm"}
                     </Button>
                     <Button look="alternate" onClick={onClose}>
-                      Cancel
+                      <FormattedMessage
+                        id="label.cancel"
+                        defaultMessage={`Cancel`}
+                      />
                     </Button>
                   </div>
                 )}

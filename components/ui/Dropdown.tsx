@@ -1,4 +1,4 @@
-import { Menu, Transition } from "@headlessui/react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 import classNames from "classnames";
 import { Fragment } from "react";
 import { HiChevronDown } from "react-icons/hi";
@@ -13,6 +13,17 @@ const Dropdown = ({ children, className, as = "div" }: DropdownProps) => {
       as={as}
       className={classNames("relative inline-block text-left", className)}
     >
+      <Transition.Child
+        as={Fragment}
+        enter="ease-out duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="ease-in duration-200"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <Dialog.Overlay className="bg-dark101 fixed inset-0 bg-opacity-50 backdrop-blur-sm transition-opacity" />
+      </Transition.Child>
       {children}
     </Menu>
   );

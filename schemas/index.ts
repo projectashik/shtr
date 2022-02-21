@@ -5,6 +5,11 @@ export const SignInSchema = object().shape({
   password: string().required("The password field is required"),
 });
 
+export const ShortenUrlSchema = object().shape({
+  // yup validation to check wehther the url is valid
+  url: string().url().required("error.urlRequired"),
+});
+
 export const SetPasswordSchema = object().shape({
   password: string()
     .min(8, "Password must be at least 8 characters long")

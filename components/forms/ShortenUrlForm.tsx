@@ -1,43 +1,62 @@
-import { Button, Input } from "components/ui";
+import { Button, ErrorMessage, Input } from "components/ui";
+import { useFormik } from "formik";
 import { useShortner } from "hooks";
-import { BaseSyntheticEvent, useState } from "react";
+import { useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { ShortenUrlSchema } from "schemas";
 import { useSWRConfig } from "swr";
 const ShortenUrlForm = () => {
   const [url, setUrl] = useState("");
+  const { formatMessage } = useIntl();
   const { mutate } = useSWRConfig();
   const { shortner, createLoading, createError } = useShortner();
-  const [error, setError] = useState("");
-  const onSubmit = async (e: BaseSyntheticEvent) => {
-    e.preventDefault();
-    setError("");
-    if (!url) {
-      setError("Please enter a valid URL");
-      return;
-    }
-    await shortner(url);
-    setUrl("");
-    mutate("/api/links");
-  };
+
+  const formik = useFormik({
+    initialValues: {
+      url: "",
+    },
+    validationSchema: ShortenUrlSchema,
+    onSubmit: async (values) => {
+      await shortner(values.url);
+      if (createError) {
+        formik.setFieldError("url", "label.urlRequired");
+        return false;
+      }
+      formik.setFieldValue("url", "");
+      mutate("/api/links");
+    },
+  });
+
+  const pasteLongUrlPlaceholder = formatMessage({
+    id: "label.pasteLongUrl",
+    defaultMessage: "Paste long URL here",
+  });
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={formik.handleSubmit}
       className="dark:bg-dark102 dark:border-dark102 my-6 rounded border bg-white p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 "
     >
       <h2 className="mb-2 text-lg font-semibold sm:text-xl">
-        Shorten long url
+        <FormattedMessage
+          id="label.shortenLongUrl"
+          defaultMessage="Shorten long URL"
+        />
       </h2>
       <div className="flex items-center ">
         <Input
           value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Paste Long URL"
+          placeholder={pasteLongUrlPlaceholder}
+          formikHandler={formik}
+          id="url"
         />
         <Button loading={createLoading} type="submit" className="ml-2">
-          Shorten
+          <FormattedMessage
+            id="label.shortenUrl"
+            defaultMessage="Shorten URL"
+          />
         </Button>
       </div>
-      {error && <p className="text-sm text-red-500">{error}</p>}
-      {createError && <p className="text-sm text-red-500">{createError}</p>}
+      <ErrorMessage formikHandler={formik} name="url"></ErrorMessage>
     </form>
   );
 };
