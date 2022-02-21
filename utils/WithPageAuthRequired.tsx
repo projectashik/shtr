@@ -27,9 +27,8 @@ const WithPageAuthRequired: IWithPageAuthRequired = (
       if ((user && !error) || !isLoading) return;
       router.push("/login");
     }, [user, error, isLoading, router]);
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading || !error) return <div>Loading...</div>;
     if (user) return <Component user={user} {...(props as any)} />;
-    if (error) return <div>Error: {error && error.message}</div>;
     return <div>Redirecting...</div>;
   };
 };

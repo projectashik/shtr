@@ -1,8 +1,44 @@
 {
-  "JqiqNj": [
+  "error.passwordMinLength": [
     {
       "type": 0,
-      "value": "Something went wrong"
+      "value": "The password must be at least 8 characters"
+    }
+  ],
+  "error.passwordMustMatchConfirmation": [
+    {
+      "type": 0,
+      "value": "The password and confirmation password must match"
+    }
+  ],
+  "error.passwordRequired": [
+    {
+      "type": 0,
+      "value": "The password field is required"
+    }
+  ],
+  "error.slugRequired": [
+    {
+      "type": 0,
+      "value": "The slug field is required"
+    }
+  ],
+  "error.urlInvalid": [
+    {
+      "type": 0,
+      "value": "कृपया सही URL दिनुहोस्"
+    }
+  ],
+  "error.urlRequired": [
+    {
+      "type": 0,
+      "value": "URL अनिवार्य छ"
+    }
+  ],
+  "error.usernameRequired": [
+    {
+      "type": 0,
+      "value": "यूजर नाम अनिवार्य छ"
     }
   ],
   "label.analytics": [
@@ -104,31 +140,31 @@
   "label.shortenLongUrl": [
     {
       "type": 0,
-      "value": "Shorten long URL"
+      "value": "URL छोटो पार्नुहोस्"
     }
   ],
   "label.shortenUrl": [
     {
       "type": 0,
-      "value": "Shorten URL"
+      "value": "छोटो पार्नुहोस्"
     }
   ],
   "label.topCountry": [
     {
       "type": 0,
-      "value": "Top Country"
+      "value": "शीर्ष देश"
     }
   ],
   "label.topReferral": [
     {
       "type": 0,
-      "value": "Top Referral"
+      "value": "शीर्ष रेफरल"
     }
   ],
   "label.totalClick": [
     {
       "type": 0,
-      "value": "Total Click"
+      "value": "कुल क्लिक"
     }
   ],
   "label.updatePassword": [
@@ -140,7 +176,7 @@
   "label.yourLinks": [
     {
       "type": 0,
-      "value": "Your Links"
+      "value": "तपाईंको लिङ्कहरू"
     }
   ],
   "modal.description.setPassword": [

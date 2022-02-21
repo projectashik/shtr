@@ -1,8 +1,44 @@
 {
-  "JqiqNj": [
+  "error.passwordMinLength": [
     {
       "type": 0,
-      "value": "Something went wrong"
+      "value": "The password must be at least 8 characters"
+    }
+  ],
+  "error.passwordMustMatchConfirmation": [
+    {
+      "type": 0,
+      "value": "The password and confirmation password must match"
+    }
+  ],
+  "error.passwordRequired": [
+    {
+      "type": 0,
+      "value": "The password field is required"
+    }
+  ],
+  "error.slugRequired": [
+    {
+      "type": 0,
+      "value": "The slug field is required"
+    }
+  ],
+  "error.urlInvalid": [
+    {
+      "type": 0,
+      "value": "Enter valid URL"
+    }
+  ],
+  "error.urlRequired": [
+    {
+      "type": 0,
+      "value": "The URL field is required"
+    }
+  ],
+  "error.usernameRequired": [
+    {
+      "type": 0,
+      "value": "The username field is required"
     }
   ],
   "label.analytics": [
@@ -153,20 +189,6 @@
     {
       "type": 0,
       "value": "Password protect your short link"
-    }
-  ],
-  "withParam": [
-    {
-      "type": 0,
-      "value": "ashik "
-    },
-    {
-      "type": 1,
-      "value": "x"
-    },
-    {
-      "type": 0,
-      "value": " is y"
     }
   ]
 }

@@ -1,6 +1,11 @@
 {
+  "error.passwordMinLength": "The password must be at least 8 characters",
+  "error.passwordMustMatchConfirmation": "The password and confirmation password must match",
+  "error.passwordRequired": "The password field is required",
+  "error.slugRequired": "The slug field is required",
   "error.urlInvalid": "Enter valid URL",
   "error.urlRequired": "The URL field is required",
+  "error.usernameRequired": "The username field is required",
   "label.analytics": "Analytics",
   "label.cancel": "Cancel",
   "label.confirmPassword": "Confirm Password",

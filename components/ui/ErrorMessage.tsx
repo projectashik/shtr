@@ -23,6 +23,36 @@ const ErrorMessage = ({
         defaultMessage="Enter valid URL"
       />
     ),
+    "error.passwordRequired": (
+      <FormattedMessage
+        id="error.passwordRequired"
+        defaultMessage="The password field is required"
+      />
+    ),
+    "error.passwordMinLength": (
+      <FormattedMessage
+        id="error.passwordMinLength"
+        defaultMessage="The password must be at least 8 characters"
+      />
+    ),
+    "error.passwordMustMatchConfirmation": (
+      <FormattedMessage
+        id="error.passwordMustMatchConfirmation"
+        defaultMessage="The password and confirmation password must match"
+      />
+    ),
+    "error.usernameRequired": (
+      <FormattedMessage
+        id="error.usernameRequired"
+        defaultMessage="The username field is required"
+      />
+    ),
+    "error.slugRequired": (
+      <FormattedMessage
+        id="error.slugRequired"
+        defaultMessage="The slug field is required"
+      />
+    ),
   };
   return (
     <>
