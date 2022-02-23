@@ -18,11 +18,6 @@ const ShortenUrlForm = () => {
     validationSchema: ShortenUrlSchema,
     onSubmit: async (values) => {
       await shortner(values.url);
-      if (createError) {
-        formik.setFieldError("url", "label.urlRequired");
-        return false;
-      }
-      formik.setFieldValue("url", "");
       mutate("/api/links");
     },
   });

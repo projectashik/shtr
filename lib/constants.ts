@@ -3,6 +3,12 @@ export const DESKTOP_SCREEN_WIDTH = 1920;
 export const LAPTOP_SCREEN_WIDTH = 1024;
 export const MOBILE_SCREEN_WIDTH = 479;
 
+export const DEFAULT_LOCALE = "en-US";
+export const DEFAULT_THEME = "light";
+export const DEFAUL_CHART_HEIGHT = 400;
+export const DEFAULT_ANIMATION_DURATION = 300;
+export const DEFAULT_DATE_RANGE = "24hour";
+
 export const DESKTOP_OS = [
   "Windows 3.11",
   "Windows 95",

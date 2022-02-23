@@ -55,7 +55,6 @@ const Home = () => {
     }
     setDeleteLoading(false);
   };
-
   return (
     <AppLayout>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -124,12 +123,9 @@ const Home = () => {
         onConfirm={onDeleteSelected}
       />
       {links &&
-        links.length > 0 &&
-        links
-          .reverse()
-          .map((link) => (
-            <UrlCard onChange={addToSelected} key={link.link_id} link={link} />
-          ))}
+        links.map((link) => (
+          <UrlCard onChange={addToSelected} key={link.link_id} link={link} />
+        ))}
     </AppLayout>
   );
 };

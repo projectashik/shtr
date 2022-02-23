@@ -16,6 +16,6 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["global.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["global.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx", "chartjs.d.ts"],
   "exclude": ["node_modules"]
 }

@@ -10,6 +10,9 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
     let links;
     if (req.auth.is_admin) {
       links = await prisma.link.findMany({
+        orderBy: {
+          created_at: "desc",
+        },
         include: {
           user: {
             select: {
@@ -28,9 +31,6 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
               os: true,
             },
           },
-        },
-        orderBy: {
-          created_at: "desc",
         },
       });
     } else {
