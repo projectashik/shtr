@@ -132,6 +132,167 @@ export const getCountriesWithClicksByDateRange = (
   return countries;
 };
 
+export const getDevicesWithClicksByDateRange = (
+  link: linkWithClicks,
+  startAt?: Date,
+  endsAt?: Date
+) => {
+  let devices: {
+    device: string;
+    clicks: number;
+  }[] = [];
+  console.log(startAt, endsAt);
+  const clicks = link.clicks;
+  clicks &&
+    clicks
+      .filter((click: click) => {
+        if (click) {
+          if (click.created_at) {
+            if (startAt && endsAt) {
+              return (
+                new Date(click.created_at) >= new Date(startAt) &&
+                new Date(click.created_at) <= new Date(endsAt)
+              );
+            } else if (startAt) {
+              return new Date(click.created_at) >= new Date(startAt);
+            } else if (endsAt) {
+              return new Date(click.created_at) <= new Date(endsAt);
+            }
+          }
+        }
+      })
+      .map((click: click) => {
+        if (click)
+          if (startAt) {
+            console.log(
+              new Date(startAt) >= new Date(click.created_at as Date)
+            );
+          }
+        if (click.device)
+          if (!devices.find((device) => device.device === click.device)) {
+            devices.push({
+              device: click.device as string,
+              clicks: 1,
+            });
+          } else {
+            const device = devices.find(
+              (device) => device?.device === click.device
+            );
+            if (device) {
+              device.clicks += 1;
+            }
+          }
+      });
+  return devices;
+};
+
+export const getBrowsersWithClicksByDateRange = (
+  link: linkWithClicks,
+  startAt?: Date,
+  endsAt?: Date
+) => {
+  let browsers: {
+    browser: string;
+    clicks: number;
+  }[] = [];
+  console.log(startAt, endsAt);
+  const clicks = link.clicks;
+  clicks &&
+    clicks
+      .filter((click: click) => {
+        if (click) {
+          if (click.created_at) {
+            if (startAt && endsAt) {
+              return (
+                new Date(click.created_at) >= new Date(startAt) &&
+                new Date(click.created_at) <= new Date(endsAt)
+              );
+            } else if (startAt) {
+              return new Date(click.created_at) >= new Date(startAt);
+            } else if (endsAt) {
+              return new Date(click.created_at) <= new Date(endsAt);
+            }
+          }
+        }
+      })
+      .map((click: click) => {
+        if (click)
+          if (startAt) {
+            console.log(
+              new Date(startAt) >= new Date(click.created_at as Date)
+            );
+          }
+        if (click.device)
+          if (!browsers.find((browser) => browser.browser === click.browser)) {
+            browsers.push({
+              browser: click.browser as string,
+              clicks: 1,
+            });
+          } else {
+            const browser = browsers.find(
+              (browser) => browser?.browser === click.browser
+            );
+            if (browser) {
+              browser.clicks += 1;
+            }
+          }
+      });
+  return browsers;
+};
+
+// get a list of all referral with the number of clicks from the referral for the given link
+export const getReferralWithClicksByDateRange = (
+  link: linkWithClicks,
+  startAt?: Date,
+  endsAt?: Date
+) => {
+  let referrals: {
+    referral: string;
+    clicks: number;
+  }[] = [];
+  const clicks = link.clicks;
+  clicks &&
+    clicks
+      .filter((click: click) => {
+        if (click) {
+          if (click.created_at) {
+            if (startAt && endsAt) {
+              return (
+                new Date(click.created_at) >= new Date(startAt) &&
+                new Date(click.created_at) <= new Date(endsAt)
+              );
+            } else if (startAt) {
+              return new Date(click.created_at) >= new Date(startAt);
+            } else if (endsAt) {
+              return new Date(click.created_at) <= new Date(endsAt);
+            }
+          }
+        }
+      })
+      .map((click: click) => {
+        if (click)
+          if (click.referral)
+            if (
+              !referrals.find(
+                (referral) => referral.referral === click.referral
+              )
+            ) {
+              referrals.push({
+                referral: click.referral as string,
+                clicks: 1,
+              });
+            } else {
+              const referral = referrals.find(
+                (referral) => referral?.referral === click.referral
+              );
+              if (referral) {
+                referral.clicks += 1;
+              }
+            }
+      });
+  return referrals;
+};
+
 // get topcountry for single link
 export const getTopCountryForLink = (link: any) => {
   let countries: { [key: string]: number } = {};

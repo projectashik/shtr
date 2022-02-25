@@ -3,39 +3,80 @@ import { Button } from "components/ui";
 import { useUser } from "hooks";
 import useDateRange from "hooks/useDateRange";
 import { useRouter } from "next/router";
-import { FiChevronDown, FiSettings } from "react-icons/fi";
-import { HiOutlineLogout, HiOutlineUserCircle } from "react-icons/hi";
+import { useState } from "react";
+import { FiChevronDown } from "react-icons/fi";
 import { FormattedMessage } from "react-intl";
 
 const DateRangeDropdown = () => {
   const { user, logout } = useUser();
   const router = useRouter();
-  const { saveDateRange } = useDateRange();
+  const { dateRange, saveDateRange } = useDateRange();
+  const [selectedLabel, setSelectedLabel] = useState<any>();
 
   const dropItems = [
     {
-      label: <FormattedMessage id="label.profile" defaultMessage="Profile" />,
-      onClick: () =>
-        saveDateRange({
-          value: "1week",
-        }),
-      icon: <HiOutlineUserCircle />,
+      label: <FormattedMessage id="label.date.today" defaultMessage="Today" />,
+      value: "1day",
     },
     {
-      label: <FormattedMessage id="label.settings" defaultMessage="Settings" />,
-      onClick: () => router.push("/settings/accounts"),
-      icon: <FiSettings />,
+      label: (
+        <FormattedMessage id="label.date.24hr" defaultMessage="Last 24 hours" />
+      ),
+      value: "24hour",
     },
     {
-      label: <FormattedMessage id="label.logout" defaultMessage="Logout" />,
-      onClick: () => logout(),
-      icon: <HiOutlineLogout />,
+      label: (
+        <FormattedMessage id="label.date.week" defaultMessage="This week" />
+      ),
+      value: "1week",
+    },
+
+    {
+      label: (
+        <FormattedMessage
+          id="label.date.lastSevenDays"
+          defaultMessage="Last Seven Days"
+        />
+      ),
+      value: "7day",
+    },
+    {
+      label: (
+        <FormattedMessage id="label.date.month" defaultMessage="This month" />
+      ),
+      value: "1month",
+    },
+    {
+      label: (
+        <FormattedMessage
+          id="label.date.last30Days"
+          defaultMessage="Last 30 days"
+        />
+      ),
+      value: "30day",
+    },
+    {
+      label: (
+        <FormattedMessage
+          id="label.date.last90Days"
+          defaultMessage="Last 90 days"
+        />
+      ),
+      value: "90day",
+    },
+    {
+      label: (
+        <FormattedMessage id="label.date.thisYear" defaultMessage="This year" />
+      ),
+      value: "1year",
     },
   ];
   return (
-    <Menu as="div" className="relative ml-4 inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left">
       <Button rightIcon={<FiChevronDown />} look="alternate">
-        <Menu.Button as="span">{user && user.username}</Menu.Button>
+        <Menu.Button as="span">
+          {dropItems.find((item) => item.value === dateRange?.value)?.label}
+        </Menu.Button>
       </Button>
 
       <Transition
@@ -51,10 +92,14 @@ const DateRangeDropdown = () => {
             {dropItems.map((item, index) => (
               <Menu.Item key={index}>
                 <button
-                  onClick={() => item.onClick()}
+                  onClick={() => {
+                    setSelectedLabel(item.label);
+                    saveDateRange({
+                      value: item.value,
+                    });
+                  }}
                   className={`flex items-center rounded-md py-1 px-4 text-gray-700  hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white sm:py-2`}
                 >
-                  <span className="mr-2 text-xl">{item.icon}</span>
                   {item.label}
                 </button>
               </Menu.Item>

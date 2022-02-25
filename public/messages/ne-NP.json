@@ -77,6 +77,60 @@
       "value": "Created By"
     }
   ],
+  "label.date-range": [
+    {
+      "type": 0,
+      "value": "Date Range"
+    }
+  ],
+  "label.date.24hr": [
+    {
+      "type": 0,
+      "value": "Last 24 hours"
+    }
+  ],
+  "label.date.last30Days": [
+    {
+      "type": 0,
+      "value": "Last 30 days"
+    }
+  ],
+  "label.date.last90Days": [
+    {
+      "type": 0,
+      "value": "Last 90 days"
+    }
+  ],
+  "label.date.lastSevenDays": [
+    {
+      "type": 0,
+      "value": "Last Seven Days"
+    }
+  ],
+  "label.date.month": [
+    {
+      "type": 0,
+      "value": "This month"
+    }
+  ],
+  "label.date.thisYear": [
+    {
+      "type": 0,
+      "value": "This year"
+    }
+  ],
+  "label.date.today": [
+    {
+      "type": 0,
+      "value": "Today"
+    }
+  ],
+  "label.date.week": [
+    {
+      "type": 0,
+      "value": "This week"
+    }
+  ],
   "label.editUrl": [
     {
       "type": 0,
@@ -147,6 +201,12 @@
     {
       "type": 0,
       "value": "छोटो पार्नुहोस्"
+    }
+  ],
+  "label.single-day": [
+    {
+      "type": 0,
+      "value": "Single Day"
     }
   ],
   "label.topCountry": [

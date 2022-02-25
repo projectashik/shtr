@@ -89,7 +89,7 @@ const UrlCard = ({
             <a
               href={`${window.location.origin}/${link.slug}`}
               target="_blank"
-              className="text-gray-500 dark:text-gray-500"
+              className="block overflow-hidden text-gray-500 dark:text-gray-500"
               rel="noopener noreferrer"
             >
               {link.url}

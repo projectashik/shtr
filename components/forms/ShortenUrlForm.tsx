@@ -31,12 +31,17 @@ const ShortenUrlForm = () => {
       onSubmit={formik.handleSubmit}
       className="dark:bg-dark102 dark:border-dark102 my-6 rounded border bg-white p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 "
     >
-      <h2 className="mb-2 text-lg font-semibold sm:text-xl">
-        <FormattedMessage
-          id="label.shortenLongUrl"
-          defaultMessage="Shorten long URL"
-        />
-      </h2>
+      <div className="mb-2 flex items-center justify-between">
+        <h2 className=" text-lg font-semibold sm:text-xl">
+          <FormattedMessage
+            id="label.shortenLongUrl"
+            defaultMessage="Shorten long URL"
+          />
+        </h2>
+        <Button style={{ padding: "5px 10px" }} look="alternate">
+          Bulk Create
+        </Button>
+      </div>
       <div className="flex items-center ">
         <Input
           value={url}
