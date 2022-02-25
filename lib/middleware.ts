@@ -1,3 +1,4 @@
+import cors from "cors";
 import { NextApiResponse } from "next";
 import { NextApiRequestExtended } from "types";
 import { getAuthToken } from "./auth";
@@ -27,3 +28,5 @@ export const use_auth = use(
     next();
   }
 );
+
+export const use_Cors = use(cors());
