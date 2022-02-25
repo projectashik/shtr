@@ -1,4 +1,5 @@
 import { verifyKey } from "lib/crypto";
+import prisma from "lib/db";
 import { makeSlug } from "lib/helper";
 import { use_Cors } from "lib/middleware";
 import { badRequest, methodNotAllowed, ok, unauthorized } from "lib/response";
@@ -23,11 +24,11 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
           });
           return ok(res, newLink);
         } else {
-            console.log("Bad 1");
+          console.log("Bad 1");
           return badRequest(res, "Something went wrong");
         }
       } catch (e) {
-          console.log(e)
+        console.log(e);
         return badRequest(res, "Something went wrong");
       }
     } else {
@@ -35,7 +36,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
       return unauthorized(res);
     }
   } else {
-    console.log('no allowd');
+    console.log("no allowd");
     return methodNotAllowed(res);
   }
 };
