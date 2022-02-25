@@ -23,15 +23,19 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
           });
           return ok(res, newLink);
         } else {
+            console.log("Bad 1");
           return badRequest(res, "Something went wrong");
         }
       } catch (e) {
+          console.log(e)
         return badRequest(res, "Something went wrong");
       }
     } else {
+      console.log("Unauthorized");
       return unauthorized(res);
     }
   } else {
+    console.log('no allowd');
     return methodNotAllowed(res);
   }
 };
