@@ -15,6 +15,7 @@ interface ModalProps {
   confirmType?: "button" | "submit" | "reset" | undefined;
   confirmLook?: "primary" | "alternate" | "danger";
   loading?: boolean;
+  cancelText?: React.ReactNode;
 }
 
 const Modal = ({
@@ -26,7 +27,10 @@ const Modal = ({
   setIsOpen,
   confirmType = "submit",
   loading,
-  confirmText = "Confirm",
+  confirmText = (
+    <FormattedMessage id="label.confirm" defaultMessage={`Confirm`} />
+  ),
+  cancelText = <FormattedMessage id="label.cancel" defaultMessage={`Cancel`} />,
   confirmLook = "primary",
 }: ModalProps) => {
   const onClose = () => {
@@ -103,10 +107,7 @@ const Modal = ({
                       {confirmText || "Confirm"}
                     </Button>
                     <Button look="alternate" onClick={onClose}>
-                      <FormattedMessage
-                        id="label.cancel"
-                        defaultMessage={`Cancel`}
-                      />
+                      {cancelText}
                     </Button>
                   </div>
                 )}

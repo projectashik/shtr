@@ -1,8 +1,9 @@
-import { JWT, JWE, JWK } from "jose";
-import crypto from "crypto";
-import { v4, v5, validate } from "uuid";
-import { startOfMonth } from "date-fns";
 import bcrypt from "bcryptjs";
+import crypto from "crypto";
+import { startOfMonth } from "date-fns";
+import { JWE, JWK, JWT } from "jose";
+import { v4, v5 } from "uuid";
+import prisma from "./db";
 
 const SALT_ROUNDS = 10;
 const KEY = JWK.asKey(Buffer.from(secret()));
@@ -19,6 +20,22 @@ export function secret() {
 
 export function salt() {
   return v5([secret(), ROTATING_SALT].join(""), v5.DNS);
+}
+
+export async function verifyKey(key: string) {
+  try {
+    const api = await prisma?.api.findFirst({
+      where: {
+        key,
+      },
+      include: {
+        user: true,
+      },
+    });
+    return api;
+  } catch (e) {
+    throw e;
+  }
 }
 
 export function uuid(...args: any) {

@@ -19,6 +19,7 @@ model user {
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   updated_at DateTime? @default(now()) @db.Timestamptz(6)
   links      link[]
+  api        api[]
 }
 
 model link {
@@ -32,6 +33,17 @@ model link {
   clicks     click[]
 
   @@index([user_id], name: "link_user_id_idx")
+}
+
+model api {
+  api_id     Int      @id @default(autoincrement())
+  user_id    Int
+  user       user     @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  key        String
+  name       String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([user_id], name: "api_user_id_idx")
 }
 
 model click {

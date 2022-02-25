@@ -12,6 +12,20 @@ const SettingsLayout = ({ children }: Props) => {
   const isActive = (path: string) => {
     return router.pathname === path;
   };
+  const links = [
+    {
+      link: "/settings/profile",
+      label: "Profile",
+    },
+    {
+      link: "/settings/accounts",
+      label: "Accounts",
+    },
+    {
+      link: "/settings/apis",
+      label: "Apis",
+    },
+  ];
   return (
     <AppLayout>
       <h1 className="text-xl font-semibold tracking-wider">Settings</h1>
@@ -19,39 +33,18 @@ const SettingsLayout = ({ children }: Props) => {
         <div className="mb-4 flex w-full rounded-md md:col-span-2 md:mb-0">
           <div className="dark:bg-dark102 w-full rounded-md bg-white p-4">
             <div className="flex w-full flex-row justify-between md:flex-col">
-              <Link href="/settings/profile">
-                <a
-                  className={classNames(
-                    "dark:hover:bg-dark101 flex items-center rounded p-3 hover:bg-gray-100",
-                    isActive("/settings/profile") &&
-                      "dark:bg-dark101 bg-gray-200"
-                  )}
-                >
-                  Profile
-                </a>
-              </Link>
-              <Link href="/settings/accounts">
-                <a
-                  className={classNames(
-                    "dark:hover:bg-dark101 flex items-center rounded p-3 hover:bg-gray-100",
-                    isActive("/settings/accounts") &&
-                      "dark:bg-dark101 bg-gray-200"
-                  )}
-                >
-                  Accounts
-                </a>
-              </Link>
-              <Link href="/settings/profile">
-                <a
-                  className={classNames(
-                    "dark:hover:bg-dark101 flex items-center rounded p-3 hover:bg-gray-100",
-                    isActive("/settings/profile") &&
-                      "dark:bg-dark101 bg-gray-200"
-                  )}
-                >
-                  Profile
-                </a>
-              </Link>
+              {links.map((data, index) => (
+                <Link key={index} href={data.link}>
+                  <a
+                    className={classNames(
+                      "dark:hover:bg-dark101 flex items-center rounded p-3 hover:bg-gray-100",
+                      isActive(data.link) && "dark:bg-dark101 bg-gray-200"
+                    )}
+                  >
+                    {data.label}
+                  </a>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

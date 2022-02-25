@@ -32,3 +32,7 @@ export const CreateUserSchema = object().shape({
   username: string().required("error.usernameRequired"),
   password: string().required("error.passwordRequired"),
 });
+
+export const InvokeApiSchema = object().shape({
+  name: string().required("error.nameRequired"),
+});
