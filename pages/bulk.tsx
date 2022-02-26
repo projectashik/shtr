@@ -12,7 +12,6 @@ const BulkPage = () => {
       Papa.parse(file, {
         header: true,
         complete: (results: any) => {
-          console.log(results.data);
           if (results.data.length < 1) {
             return alert("No data found in the file");
           }

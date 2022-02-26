@@ -5,13 +5,14 @@ import { useUser } from "hooks";
 import { toast } from "lib/toast";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FiEdit } from "react-icons/fi";
+import { FiEdit, FiRotateCw } from "react-icons/fi";
 import {
   HiOutlineClipboardCopy,
   HiOutlineKey,
   HiOutlineTrash,
   HiQrcode,
 } from "react-icons/hi";
+import { FormattedMessage } from "react-intl";
 import { useSWRConfig } from "swr";
 import { LinkWithUser } from "types";
 import QrCode from "./QrCode";
@@ -48,10 +49,40 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
     toast({ message: "Copied to clipboard" });
   };
 
+  const onRefresh = async () => {
+    setDeleteLoading(true);
+    try {
+      const res = await axios.post(`/api/link/${link.link_id}/refresh`);
+      if (res.data) {
+        toast({
+          message: (
+            <FormattedMessage
+              id="label.linkRefreshed"
+              defaultMessage="Link Refreshed"
+            />
+          ),
+        });
+        setRefreshLinkModalOpen(false);
+        mutate(`/api/link/${link.link_id}/fetch`);
+      }
+    } catch (e: any) {
+      toast({
+        message: (
+          <FormattedMessage
+            id="label.errorRefreshingLink"
+            defaultMessage="Error refreshing link."
+          />
+        ),
+      });
+    }
+    setDeleteLoading(false);
+  };
+
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [showQrModalOpen, setShowQrModalOpen] = useState(false);
   const [editLinkOpen, setEditLinkOpen] = useState(false);
+  const [refreshLinkModalOpen, setRefreshLinkModalOpen] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const origin =
@@ -122,6 +153,13 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
           >
             <HiOutlineTrash />
           </TButton>
+          <TButton
+            tooltip="Refresh Link"
+            onClick={() => setRefreshLinkModalOpen(true)}
+            look="danger"
+          >
+            <FiRotateCw />
+          </TButton>
         </div>
         <UrlPasswordForm
           isOpen={showPasswordModal}
@@ -131,13 +169,40 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
 
         <Modal
           title="Delete Short URL"
-          confirmText="Confirm"
           onConfirm={onDelete}
           isOpen={isDeleteConfirmOpen}
           confirmLook="danger"
+          loading={deleteLoading}
           setIsOpen={setIsDeleteConfirmOpen}
           description="Are you sure you want to delete this link?"
         ></Modal>
+
+        <Modal
+          title={
+            <FormattedMessage
+              id="label.refreshLink"
+              defaultMessage="Refresh Link"
+            />
+          }
+          loading={deleteLoading}
+          onConfirm={onRefresh}
+          isOpen={refreshLinkModalOpen}
+          confirmLook="danger"
+          setIsOpen={setRefreshLinkModalOpen}
+          description={
+            <FormattedMessage
+              id="label.areYouSureYouWantToRefreshThisLink"
+              defaultMessage="Are you sure you want to refresh this link"
+            />
+          }
+        >
+          <div>
+            <FormattedMessage
+              id="label.thisWillRemoveAllTheClicksOfTheLink"
+              defaultMessage="This will remove all the clicks of the link"
+            />
+          </div>
+        </Modal>
 
         <Modal
           title="Share your qr code for the link"

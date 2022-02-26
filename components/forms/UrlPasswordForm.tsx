@@ -27,7 +27,6 @@ const UrlPasswordForm = ({
     validationSchema: SetPasswordSchema,
     onSubmit: async (values) => {
       setLoading(true);
-      console.log(values);
       try {
         const res = await axios.post(
           `/api/link/${link.link_id as unknown as string}/password`,
@@ -41,7 +40,6 @@ const UrlPasswordForm = ({
         toast({ message: res.data.msg });
         setIsOpen(false);
       } catch (e: any) {
-        console.log(e.response);
       }
       setLoading(false);
     },
@@ -61,7 +59,6 @@ const UrlPasswordForm = ({
 
       toast({ message: res.data.msg });
     } catch (e: any) {
-      console.log(e.response);
     }
     setIsOpen(false);
     setRemoveLoading(false);

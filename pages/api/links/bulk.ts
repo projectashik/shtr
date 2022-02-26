@@ -1,6 +1,6 @@
-import { parseSlug } from "lib/backendHelper";
 import { hashPassword } from "lib/crypto";
 import prisma from "lib/db";
+import { makeSlug } from "lib/helper";
 import { use_auth } from "lib/middleware";
 import { badRequest, methodNotAllowed, ok } from "lib/response";
 import { NextApiResponse } from "next";
@@ -11,6 +11,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
   if (req.method === "POST") {
     const { links } = req.body;
     if (links) {
+      console.log(links);
       let filteredLinks = links.filter((link: any) => link.url);
       if (filteredLinks.length < 1) return badRequest(res, "No links provided");
       filteredLinks = filteredLinks.filter((link: any) =>
@@ -22,7 +23,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
       const bulkLinks = filteredLinks.map((link: any) => {
         return {
           url: link.url,
-          slug: parseSlug(link.slug),
+          slug: makeSlug(),
           user_id: req.auth.user_id,
           password: link.password ? hashPassword(link.password) : "",
         };

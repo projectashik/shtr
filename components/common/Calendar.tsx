@@ -55,7 +55,6 @@ const Calendar = ({
     setSelectMonth(false);
     setSelectYear(false);
     if (value) {
-      console.log(value);
       onChange(value);
     }
   };

@@ -1,3 +1,10 @@
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  LinearScale,
+  LineElement,
+  PointElement,
+} from "chart.js";
 import { StatsCard } from "components/common";
 import DateRangeDropdown from "components/common/DateRangeDropdown";
 import UrlCardSingle from "components/common/UrlCardSingle";
@@ -22,6 +29,8 @@ import { HiCursorClick, HiOutlineExternalLink } from "react-icons/hi";
 import { useIntl } from "react-intl";
 import useSWR from "swr";
 import WithPageAuthRequired from "utils/WithPageAuthRequired";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const SingleLinkPage = () => {
   const router = useRouter();
@@ -88,7 +97,7 @@ const SingleLinkPage = () => {
         </p>
         <DateRangeDropdown />
       </div>
-      {/* display the country and clicks with the flag image of the country */}
+      {/* create a line chart for the click of the given date range */}
 
       <div className="mt-4 flex flex-col">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -238,7 +247,7 @@ const SingleLinkPage = () => {
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="dark:border-dark101 overflow-hidden rounded border-b border-gray-200 shadow">
                   <div className="dark:bg-dark102 dark:border-dark101 border-b bg-gray-50 py-2 px-6 text-lg font-semibold">
-                    Browsers
+                    Referrals
                   </div>
                   <table className="dark:divide-dark101 min-w-full divide-y divide-gray-200">
                     <thead className="dark:bg-dark102  bg-gray-50">
@@ -247,7 +256,7 @@ const SingleLinkPage = () => {
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Browser
+                          Referral
                         </th>
                         <th
                           scope="col"

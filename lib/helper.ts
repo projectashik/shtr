@@ -54,6 +54,7 @@ export const getCountriesWithClicks = (
   let countries: {
     country: string;
     clicks: number;
+    createdAt: Date;
   }[] = [];
   const clicks = link.clicks;
   clicks &&
@@ -64,6 +65,7 @@ export const getCountriesWithClicks = (
             countries.push({
               country: click.country as string,
               clicks: 1,
+              createdAt: click.created_at as Date,
             });
           } else {
             const country = countries.find(
@@ -86,8 +88,8 @@ export const getCountriesWithClicksByDateRange = (
   let countries: {
     country: string;
     clicks: number;
+    createdAt: Date;
   }[] = [];
-  console.log(startAt, endsAt);
   const clicks = link.clicks;
   clicks &&
     clicks
@@ -108,17 +110,12 @@ export const getCountriesWithClicksByDateRange = (
         }
       })
       .map((click: click) => {
-        if (click)
-          if (startAt) {
-            console.log(
-              new Date(startAt) >= new Date(click.created_at as Date)
-            );
-          }
         if (click.country)
           if (!countries.find((country) => country.country === click.country)) {
             countries.push({
               country: click.country as string,
               clicks: 1,
+              createdAt: click.created_at as Date,
             });
           } else {
             const country = countries.find(
@@ -141,7 +138,6 @@ export const getDevicesWithClicksByDateRange = (
     device: string;
     clicks: number;
   }[] = [];
-  console.log(startAt, endsAt);
   const clicks = link.clicks;
   clicks &&
     clicks
@@ -162,12 +158,6 @@ export const getDevicesWithClicksByDateRange = (
         }
       })
       .map((click: click) => {
-        if (click)
-          if (startAt) {
-            console.log(
-              new Date(startAt) >= new Date(click.created_at as Date)
-            );
-          }
         if (click.device)
           if (!devices.find((device) => device.device === click.device)) {
             devices.push({
@@ -195,7 +185,6 @@ export const getBrowsersWithClicksByDateRange = (
     browser: string;
     clicks: number;
   }[] = [];
-  console.log(startAt, endsAt);
   const clicks = link.clicks;
   clicks &&
     clicks
@@ -216,12 +205,6 @@ export const getBrowsersWithClicksByDateRange = (
         }
       })
       .map((click: click) => {
-        if (click)
-          if (startAt) {
-            console.log(
-              new Date(startAt) >= new Date(click.created_at as Date)
-            );
-          }
         if (click.device)
           if (!browsers.find((browser) => browser.browser === click.browser)) {
             browsers.push({

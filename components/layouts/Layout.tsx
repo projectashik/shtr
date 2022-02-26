@@ -1,8 +1,25 @@
-import { changeTheme } from "lib/theme";
+import { Button } from "components/ui";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 const Layout = ({ children }: any) => {
   const { theme, setTheme, systemTheme } = useTheme();
+  const [currentTheme, setCurrentTheme] = useState("");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      setCurrentTheme("light");
+    } else if (theme === "light") {
+      setCurrentTheme("dark");
+    } else if (theme === "system") {
+      if (systemTheme === "dark") {
+        setCurrentTheme("light");
+      } else if (systemTheme === "light") {
+        setCurrentTheme("dark");
+      }
+    }
+  }, [theme, setCurrentTheme, systemTheme]);
   const toggleTheme = () => {
     if (theme === "dark") {
       setTheme("light");
@@ -19,9 +36,13 @@ const Layout = ({ children }: any) => {
   return (
     <div>
       {children}
-      <button onClick={toggleTheme} className="fixed bottom-10 left-10 block">
-        Change Theme
-      </button>
+      <Button
+        title="Change Theme"
+        className="fixed bottom-10 left-10"
+        onClick={toggleTheme}
+      >
+        {theme === "light" ? <FiMoon /> : <FiSun />}
+      </Button>
     </div>
   );
 };

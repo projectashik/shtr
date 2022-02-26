@@ -23,7 +23,6 @@ export default function useDateRange(defaultDateRange = DEFAULT_DATE_RANGE) {
   }
 
   function saveDateRange(values: any) {
-    console.log(values);
     const { value } = values;
 
     setDateRangeToState(value === "custom" ? values : value);
@@ -31,7 +30,6 @@ export default function useDateRange(defaultDateRange = DEFAULT_DATE_RANGE) {
 
   const exportDateRange =
     globalDateRange || getDateRange(dateRangeFromState, locale);
-  console.log(exportDateRange);
   return {
     dateRange: exportDateRange,
     saveDateRange,

@@ -5,11 +5,13 @@ import { useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { ShortenUrlSchema } from "schemas";
 import { useSWRConfig } from "swr";
+import BulkForm from "./BulkForm";
 const ShortenUrlForm = () => {
   const [url, setUrl] = useState("");
   const { formatMessage } = useIntl();
   const { mutate } = useSWRConfig();
   const { shortner, createLoading, createError } = useShortner();
+  const [bulkCreateDisplay, setBulkCreateDisplay] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -27,10 +29,7 @@ const ShortenUrlForm = () => {
     defaultMessage: "Paste long URL here",
   });
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      className="dark:bg-dark102 dark:border-dark102 my-6 rounded border bg-white p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 "
-    >
+    <div className="dark:bg-dark102 dark:border-dark102 my-6 rounded border bg-white p-4 shadow dark:shadow-gray-800  sm:my-10 md:p-6 ">
       <div className="mb-2 flex items-center justify-between">
         <h2 className=" text-lg font-semibold sm:text-xl">
           <FormattedMessage
@@ -38,11 +37,15 @@ const ShortenUrlForm = () => {
             defaultMessage="Shorten long URL"
           />
         </h2>
-        <Button style={{ padding: "5px 10px" }} look="alternate">
+        <Button
+          onClick={() => setBulkCreateDisplay(true)}
+          style={{ padding: "5px 10px" }}
+          look="alternate"
+        >
           Bulk Create
         </Button>
       </div>
-      <div className="flex items-center ">
+      <form onSubmit={formik.handleSubmit} className="flex items-center ">
         <Input
           value={url}
           placeholder={pasteLongUrlPlaceholder}
@@ -55,9 +58,10 @@ const ShortenUrlForm = () => {
             defaultMessage="Shorten URL"
           />
         </Button>
-      </div>
+      </form>
       <ErrorMessage formikHandler={formik} name="url"></ErrorMessage>
-    </form>
+      <BulkForm isOpen={bulkCreateDisplay} setIsOpen={setBulkCreateDisplay} />
+    </div>
   );
 };
 
