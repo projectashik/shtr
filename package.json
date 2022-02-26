@@ -38,6 +38,7 @@
     "moment-timezone": "^0.5.34",
     "next": "^12.1.0",
     "next-connect": "^0.11.1",
+    "next-pwa": "^5.4.4",
     "next-themes": "^0.0.15",
     "next-useragent": "^2.8.0",
     "papaparse": "^5.3.1",

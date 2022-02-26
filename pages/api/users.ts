@@ -14,13 +14,11 @@ handler.get(async (req, res) => {
           created_at: "asc",
         },
       });
-      console.log(users);
       return ok(res, users);
     } else {
       return unauthorized(res);
     }
   } catch (e: any) {
-    console.log(e);
     return badRequest(res, "");
   }
 });
