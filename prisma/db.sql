@@ -26,7 +26,7 @@ CREATE TABLE link (
   password character varying(60),
   bot_protection boolean DEFAULT false NOT NULL
 );
-CREATE TABLE "user" (
+CREATE TABLE user (
   user_id integer NOT NULL,
   username character varying(255) NOT NULL,
   password character varying(60) NOT NULL,
