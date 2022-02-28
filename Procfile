@@ -1,1 +1,1 @@
-web: npm run start-env
+web: yarn start -p $PORT
