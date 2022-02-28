@@ -26,9 +26,10 @@ const EditUserForm = ({
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        await axios.post(`/api/user/${user.user_id}/edit`, {
+        await axios.post(`/api/user/${user.user_id}/update`, {
           username: values.username,
           password: values.password,
+          type: "all",
         });
         mutate("/api/users");
         setIsOpen(false);

@@ -1,0 +1,19 @@
+{
+  "name": "Shtr",
+  "description": "Shtr is free, opesource and easy to use url shortner",
+  "keywords": ["shtr", "url-shortner", "url", "shortner"],
+  "website": "https://shtr.tk",
+  "repository": "https://github.com/projectashik/shtr",
+  "addons": ["heroku-postgresql"],
+  "env": {
+    "HASH_SALT": {
+      "description": "Used to generate unique values for your installation",
+      "required": true,
+      "generator": "secret"
+    }
+  },
+  "scripts": {
+    "postdeploy": "psql $DATABASE_URL -f prisma/db.sql"
+  },
+  "success_url": "/"
+}

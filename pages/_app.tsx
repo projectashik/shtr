@@ -7,6 +7,7 @@ import NextNprogress from "nextjs-progressbar";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { IntlProvider } from "react-intl";
+import "react-loading-skeleton/dist/skeleton.css";
 import "../styles/globals.css";
 
 const Intl = ({ children }: { children: React.ReactNode }) => {

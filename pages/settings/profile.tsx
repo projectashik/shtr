@@ -3,6 +3,7 @@ import UpdateUsernameForm from "components/forms/UpdateUsernameForm";
 import SettingsLayout from "components/layouts/SettingsLayout";
 import { useUser } from "hooks";
 import { FormattedMessage } from "react-intl";
+import WithPageAuthRequired from "utils/WithPageAuthRequired";
 
 const ProfilePage = () => {
   const { user } = useUser();
@@ -23,4 +24,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default WithPageAuthRequired(ProfilePage);

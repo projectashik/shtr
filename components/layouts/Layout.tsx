@@ -38,7 +38,7 @@ const Layout = ({ children }: any) => {
       {children}
       <Button
         title="Change Theme"
-        className="fixed bottom-10 left-10"
+        className="fixed bottom-10 left-10 z-50"
         onClick={toggleTheme}
       >
         {theme === "light" ? <FiMoon /> : <FiSun />}

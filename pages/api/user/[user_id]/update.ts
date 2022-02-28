@@ -29,6 +29,25 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
         } catch (e: any) {
           return badRequest(res, "error.usernameUnique");
         }
+      } else if (type === "all") {
+        const { username, password } = req.body;
+        const hashedPass = hashPassword(password);
+        try {
+          const user = await prisma.user.update({
+            where: {
+              user_id: +user_id,
+            },
+            data: {
+              username,
+              password: hashedPass,
+            },
+          });
+          return ok(res, {
+            msg: "User updated successfully.",
+          });
+        } catch (e: any) {
+          return badRequest(res, "error.usernameUnique");
+        }
       } else {
         const { current_password, new_password, confirmation } = req.body;
 

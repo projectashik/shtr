@@ -11,6 +11,7 @@ import { useState } from "react";
 import { FiCheckCircle, FiUserPlus, FiXCircle } from "react-icons/fi";
 import { FormattedMessage } from "react-intl";
 import useSWR from "swr";
+import WithPageAuthRequired from "utils/WithPageAuthRequired";
 
 const AccountsPage = () => {
   const { user: currentLoggedInUser } = useUser();
@@ -201,4 +202,4 @@ const AccountsPage = () => {
   );
 };
 
-export default AccountsPage;
+export default WithPageAuthRequired(AccountsPage);

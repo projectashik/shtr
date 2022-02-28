@@ -9,6 +9,7 @@ import { FiPlus } from "react-icons/fi";
 import { FormattedMessage } from "react-intl";
 import useSWR from "swr";
 import { ApiWithUser } from "types";
+import WithPageAuthRequired from "utils/WithPageAuthRequired";
 
 const ApiPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,4 +141,4 @@ const ApiPage = () => {
   );
 };
 
-export default ApiPage;
+export default WithPageAuthRequired(ApiPage);

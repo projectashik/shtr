@@ -1,6 +1,6 @@
 import axios from "axios";
 import router from "next/router";
-import { FiLayers, FiLogOut, FiUser } from "react-icons/fi";
+import { FiLayers, FiLogOut } from "react-icons/fi";
 import { HiOutlineHome, HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { RiPaletteLine } from "react-icons/ri";
 import { changeTheme } from "./theme";
@@ -65,13 +65,5 @@ export const actions = [
       await axios.post("/api/auth/logout");
       router.reload();
     },
-  },
-  {
-    id: "Manage Users",
-    name: "Manage Users",
-    keywords: "users, manage users",
-    shortcut: [""],
-    icon: <FiUser />,
-    perform: () => router.push("/settings/accounts"),
   },
 ];

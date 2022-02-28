@@ -42,7 +42,10 @@ const ShortenUrlForm = () => {
           style={{ padding: "5px 10px" }}
           look="alternate"
         >
-          Bulk Create
+          <FormattedMessage
+            id="label.bulkCreate"
+            defaultMessage="Bulk Create"
+          />
         </Button>
       </div>
       <form onSubmit={formik.handleSubmit} className="flex items-center ">
