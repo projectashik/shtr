@@ -10,11 +10,18 @@ import isbot from "isbot";
 import prisma from "lib/db";
 import { linkClickQuery } from "lib/queries";
 import { GetServerSidePropsContext } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { BaseSyntheticEvent, useState } from "react";
 import { HiArrowRight } from "react-icons/hi";
 
-export default function SlugPage({ link }: { link: any }) {
+export default function SlugPage({
+  link,
+  linkError,
+}: {
+  link: any;
+  linkError: any;
+}) {
   const parsedLink: link = JSON.parse(link);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -44,6 +51,12 @@ export default function SlugPage({ link }: { link: any }) {
 
   return (
     <Layout>
+      <Head>
+        <title>
+          {linkError && linkError}
+          {link && link.url}
+        </title>
+      </Head>
       <div>{!parsedLink && <NotFound />}</div>
       {parsedLink && parsedLink.password && (
         <div>
