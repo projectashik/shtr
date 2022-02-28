@@ -1,4 +1,4 @@
-import { api, link, Prisma, user } from "@prisma/client";
+import { account, api, link, Prisma } from "@prisma/client";
 import { NextApiRequest } from "next";
 
 export interface NextApiRequestExtended extends NextApiRequest {
@@ -14,10 +14,10 @@ export interface NextApiRequestExtended extends NextApiRequest {
 }
 
 export interface LinkWithUser extends link {
-  user: user;
+  user: account;
 }
 export interface ApiWithUser extends api {
-  user: user;
+  user: account;
 }
 
 export const linkWithClicks = Prisma.validator<Prisma.linkArgs>()({

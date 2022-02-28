@@ -17,7 +17,7 @@ const UrlPasswordForm = ({
   link: link;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  mutator: any;
+  mutator?: any;
 }) => {
   const [loading, setLoading] = useState(false);
   const [removeLoading, setRemoveLoading] = useState(false);
@@ -39,7 +39,7 @@ const UrlPasswordForm = ({
         );
         mutate("/api/links");
         mutate(`/api/link/${link.link_id}/fetch`);
-        mutator();
+        mutator && mutator();
         toast({ message: res.data.msg });
         setIsOpen(false);
       } catch (e: any) {}

@@ -1,4 +1,4 @@
-import { user } from "@prisma/client";
+import { account } from "@prisma/client";
 import axios from "axios";
 import AddUserForm from "components/forms/AddUserForm";
 import EditUserForm from "components/forms/EditUserForm";
@@ -107,7 +107,7 @@ const AccountsPage = () => {
                 <tbody className="dark:bg-dark101 dark:divide-dark102 divide-y divide-gray-200 bg-white">
                   {users &&
                     users.length > 0 &&
-                    users.map((user: user, index: number) => (
+                    users.map((user: account, index: number) => (
                       <tr key={index}>
                         <td className="whitespace-nowrap px-6 py-4">
                           {user.username}

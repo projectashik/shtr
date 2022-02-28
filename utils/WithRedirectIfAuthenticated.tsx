@@ -1,7 +1,7 @@
+import { account } from "@prisma/client";
+import { useUser } from "hooks";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useUser } from "hooks";
-import { user } from "@prisma/client";
 
 const defaultOnRedirecting = (): JSX.Element => <>Redirecting...</>;
 
@@ -14,7 +14,7 @@ export interface WithRedirectIfAutheticatedOptions {
  * @ignore
  */
 export interface WithRedirectIfAutheticatedProps {
-  user: user;
+  user: account;
   [key: string]: any;
 }
 

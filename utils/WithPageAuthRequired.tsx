@@ -1,4 +1,4 @@
-import { user } from "@prisma/client";
+import { account } from "@prisma/client";
 import { useUser } from "hooks";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -7,7 +7,7 @@ import { useEffect } from "react";
  * @ignore
  */
 export interface WithPageAuthRequiredProps {
-  user: user;
+  user: account;
   [key: string]: any;
 }
 

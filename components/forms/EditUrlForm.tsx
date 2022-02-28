@@ -16,7 +16,7 @@ const EditUrlForm = ({
   link: link;
   editLinkOpen: boolean;
   setEditLinkOpen: (value: boolean) => void;
-  mutator: any;
+  mutator?: any;
 }) => {
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
@@ -35,7 +35,7 @@ const EditUrlForm = ({
         if (res.data) {
           mutate("/api/links");
           mutate(`/api/link/${link.link_id}/fetch`);
-          mutator();
+          mutator && mutator();
           toast({ message: "Link updated" });
           setEditLinkOpen(false);
         }

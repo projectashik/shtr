@@ -7,7 +7,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
   if (req.method === "GET") {
     let { user_id } = req.query;
     try {
-      const user = await prisma.user.findUnique({
+      const user = await prisma.account.findUnique({
         where: {
           user_id: +user_id,
         },
