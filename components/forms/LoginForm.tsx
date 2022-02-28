@@ -1,26 +1,40 @@
+import axios from "axios";
 import { Button, Field } from "components/ui";
 import { useFormik } from "formik";
-import { useUser } from "hooks";
+import { toast } from "lib/toast";
+import Router from "next/router";
+import { useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { FormattedMessage } from "react-intl";
 import { SignInSchema } from "schemas";
 
 const LoginForm = () => {
-  const { login, error, loginLoading } = useUser();
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
     onSubmit: async (values) => {
-      login({
-        username: values.username,
-        password: values.password,
-      });
-      if (error) {
-        if (error.type === "login") {
-          formik.setFieldError("username", error.message);
-        }
+      setLoading(true);
+      try {
+        await axios.post("/api/auth/login", {
+          username: values.username,
+          password: values.password,
+        });
+        Router.push("/");
+        toast({
+          message: (
+            <FormattedMessage
+              id="label.loggedIn"
+              defaultMessage="Logged In Successfully"
+            />
+          ),
+        });
+      } catch (e: any) {
+        formik.setFieldError("username", e.response.data);
       }
+      setLoading(false);
     },
     validationSchema: SignInSchema,
   });
@@ -46,7 +60,7 @@ const LoginForm = () => {
           containerClassName="mb-5"
         />
         <Button
-          loading={loginLoading}
+          loading={loading}
           rightIcon={<FiArrowRight />}
           type="submit"
           className="block w-full"

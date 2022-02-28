@@ -23,14 +23,15 @@ model user {
 }
 
 model link {
-  link_id    Int       @id @default(autoincrement())
-  user_id    Int
-  url        String    @db.Text()
-  slug       String    @unique @db.VarChar(255)
-  created_at DateTime? @default(now()) @db.Timestamptz(6)
-  password   String?   @db.VarChar(60)
-  user       user      @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
-  clicks     click[]
+  link_id        Int       @id @default(autoincrement())
+  user_id        Int
+  url            String    @db.Text()
+  slug           String    @unique @db.VarChar(255)
+  created_at     DateTime? @default(now()) @db.Timestamptz(6)
+  password       String?   @db.VarChar(60)
+  user           user      @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  clicks         click[]
+  bot_protection Boolean   @default(false)
 
   @@index([user_id], name: "link_user_id_idx")
 }

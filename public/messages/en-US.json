@@ -1,4 +1,40 @@
 {
+  "error.currentPasswordIncorrect": [
+    {
+      "type": 0,
+      "value": "Current password is incorrect"
+    }
+  ],
+  "error.deletingLink": [
+    {
+      "type": 0,
+      "value": "Error deleting links"
+    }
+  ],
+  "error.fileRequired": [
+    {
+      "type": 0,
+      "value": "The file field is required"
+    }
+  ],
+  "error.invalidCredentials": [
+    {
+      "type": 0,
+      "value": "The username or password is incorrect"
+    }
+  ],
+  "error.newPasswordRequired": [
+    {
+      "type": 0,
+      "value": "The new password field is required"
+    }
+  ],
+  "error.noDataFoundInFile": [
+    {
+      "type": 0,
+      "value": "No data found in the file"
+    }
+  ],
   "error.passwordMinLength": [
     {
       "type": 0,
@@ -17,10 +53,22 @@
       "value": "The password field is required"
     }
   ],
+  "error.selectAtLeastOneLink": [
+    {
+      "type": 0,
+      "value": "Please select at least one link"
+    }
+  ],
   "error.slugRequired": [
     {
       "type": 0,
       "value": "The slug field is required"
+    }
+  ],
+  "error.somethingWrong": [
+    {
+      "type": 0,
+      "value": "Something went wrong"
     }
   ],
   "error.urlInvalid": [
@@ -41,16 +89,112 @@
       "value": "The username field is required"
     }
   ],
+  "error.usernameUnique": [
+    {
+      "type": 0,
+      "value": "The username is already taken"
+    }
+  ],
+  "label.accounts": [
+    {
+      "type": 0,
+      "value": "Accounts"
+    }
+  ],
+  "label.actions": [
+    {
+      "type": 0,
+      "value": "Actions"
+    }
+  ],
+  "label.addAccount": [
+    {
+      "type": 0,
+      "value": "Add Account"
+    }
+  ],
+  "label.admin": [
+    {
+      "type": 0,
+      "value": "Admin"
+    }
+  ],
   "label.analytics": [
     {
       "type": 0,
       "value": "Analytics"
     }
   ],
+  "label.apiDeleted": [
+    {
+      "type": 0,
+      "value": "Api Deleted"
+    }
+  ],
+  "label.apiKey": [
+    {
+      "type": 0,
+      "value": "API Key"
+    }
+  ],
+  "label.apis": [
+    {
+      "type": 0,
+      "value": "Apis"
+    }
+  ],
+  "label.areYouSure": [
+    {
+      "type": 0,
+      "value": "Are you sure?"
+    }
+  ],
+  "label.browser": [
+    {
+      "type": 0,
+      "value": "Browser"
+    }
+  ],
+  "label.browsers": [
+    {
+      "type": 0,
+      "value": "Browsers"
+    }
+  ],
+  "label.bulkCreate": [
+    {
+      "type": 0,
+      "value": "Bulk Create"
+    }
+  ],
+  "label.bulkCreateSuccessfull": [
+    {
+      "type": 0,
+      "value": "Successfully shorten the valid links from the file"
+    }
+  ],
   "label.cancel": [
     {
       "type": 0,
       "value": "Cancel"
+    }
+  ],
+  "label.clicks": [
+    {
+      "type": 0,
+      "value": "Clicks"
+    }
+  ],
+  "label.confirm": [
+    {
+      "type": 0,
+      "value": "Confirm"
+    }
+  ],
+  "label.confirmNewPassword": [
+    {
+      "type": 0,
+      "value": "Confirm new password"
     }
   ],
   "label.confirmPassword": [
@@ -65,10 +209,22 @@
       "value": "Copied Url to clipboard"
     }
   ],
+  "label.copyApiKey": [
+    {
+      "type": 0,
+      "value": "Copy API key"
+    }
+  ],
   "label.copyShortUrl": [
     {
       "type": 0,
       "value": "Copy short URL"
+    }
+  ],
+  "label.countries": [
+    {
+      "type": 0,
+      "value": "Countries"
     }
   ],
   "label.createdBy": [
@@ -77,10 +233,10 @@
       "value": "Created By"
     }
   ],
-  "label.date-range": [
+  "label.currentPassword": [
     {
       "type": 0,
-      "value": "Date Range"
+      "value": "Current password"
     }
   ],
   "label.date.24hr": [
@@ -131,10 +287,58 @@
       "value": "This week"
     }
   ],
+  "label.delete": [
+    {
+      "type": 0,
+      "value": "Delete"
+    }
+  ],
+  "label.deleteSelected": [
+    {
+      "type": 0,
+      "value": "Delete Selected"
+    }
+  ],
+  "label.device": [
+    {
+      "type": 0,
+      "value": "Device"
+    }
+  ],
+  "label.devices": [
+    {
+      "type": 0,
+      "value": "Devices"
+    }
+  ],
+  "label.done": [
+    {
+      "type": 0,
+      "value": "Done"
+    }
+  ],
+  "label.edit": [
+    {
+      "type": 0,
+      "value": "Edit"
+    }
+  ],
   "label.editUrl": [
     {
       "type": 0,
       "value": "Edit url"
+    }
+  ],
+  "label.editUser": [
+    {
+      "type": 0,
+      "value": "Edit User"
+    }
+  ],
+  "label.errorRefreshingLink": [
+    {
+      "type": 0,
+      "value": "Error refreshing link."
     }
   ],
   "label.generateQR": [
@@ -143,16 +347,64 @@
       "value": "Generate QR Code for the short url"
     }
   ],
+  "label.invokeNewAPI": [
+    {
+      "type": 0,
+      "value": "Invoke New API"
+    }
+  ],
+  "label.linkRefreshed": [
+    {
+      "type": 0,
+      "value": "Link Refreshed"
+    }
+  ],
+  "label.linksDeleted": [
+    {
+      "type": 0,
+      "value": "Links Deleted"
+    }
+  ],
+  "label.loggedIn": [
+    {
+      "type": 0,
+      "value": "Logged In Successfully"
+    }
+  ],
   "label.logout": [
     {
       "type": 0,
       "value": "Logout"
     }
   ],
+  "label.name": [
+    {
+      "type": 0,
+      "value": "Name"
+    }
+  ],
+  "label.newPassword": [
+    {
+      "type": 0,
+      "value": "New password"
+    }
+  ],
+  "label.openLink": [
+    {
+      "type": 0,
+      "value": "Open Link"
+    }
+  ],
   "label.password": [
     {
       "type": 0,
       "value": "Password"
+    }
+  ],
+  "label.passwordUpdated": [
+    {
+      "type": 0,
+      "value": "Password updated."
     }
   ],
   "label.pasteLongUrl": [
@@ -165,6 +417,24 @@
     {
       "type": 0,
       "value": "Profile"
+    }
+  ],
+  "label.referral": [
+    {
+      "type": 0,
+      "value": "Referral"
+    }
+  ],
+  "label.referrals": [
+    {
+      "type": 0,
+      "value": "Referrals"
+    }
+  ],
+  "label.refreshLink": [
+    {
+      "type": 0,
+      "value": "Refresh Link"
     }
   ],
   "label.removePassword": [
@@ -191,6 +461,12 @@
       "value": "Settings"
     }
   ],
+  "label.shorten": [
+    {
+      "type": 0,
+      "value": "Shorten"
+    }
+  ],
   "label.shortenLongUrl": [
     {
       "type": 0,
@@ -203,10 +479,16 @@
       "value": "Shorten URL"
     }
   ],
-  "label.single-day": [
+  "label.thisWillRemoveAllTheClicksOfTheLink": [
     {
       "type": 0,
-      "value": "Single Day"
+      "value": "This will remove all the clicks of the link"
+    }
+  ],
+  "label.topBrowser": [
+    {
+      "type": 0,
+      "value": "Top Browser"
     }
   ],
   "label.topCountry": [
@@ -233,10 +515,46 @@
       "value": "Update Password"
     }
   ],
+  "label.updateUsername": [
+    {
+      "type": 0,
+      "value": "Update username"
+    }
+  ],
+  "label.userDeleted": [
+    {
+      "type": 0,
+      "value": "User Deleted"
+    }
+  ],
+  "label.username": [
+    {
+      "type": 0,
+      "value": "Username"
+    }
+  ],
+  "label.usernameUpdated": [
+    {
+      "type": 0,
+      "value": "Username updated."
+    }
+  ],
   "label.yourLinks": [
     {
       "type": 0,
       "value": "Your Links"
+    }
+  ],
+  "message.apiKeyAreShownOnce": [
+    {
+      "type": 0,
+      "value": "API keys are shown only once"
+    }
+  ],
+  "message.storeApiKey": [
+    {
+      "type": 0,
+      "value": "Store the api key in a safe place, you can't view the api key later"
     }
   ],
   "modal.description.setPassword": [
@@ -249,6 +567,42 @@
     {
       "type": 0,
       "value": "Password protect your short link"
+    }
+  ],
+  "model.description.deleteAPI": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to delete this api?"
+    }
+  ],
+  "model.description.deleteSelected": [
+    {
+      "type": 0,
+      "value": "This will delete all selected links"
+    }
+  ],
+  "model.description.deleteUser": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to delete this user?"
+    }
+  ],
+  "model.title.deleteAPI": [
+    {
+      "type": 0,
+      "value": "Delete api key"
+    }
+  ],
+  "model.title.deleteUser": [
+    {
+      "type": 0,
+      "value": "Delete User"
+    }
+  ],
+  "model.title.refreshLink": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to refresh this link"
     }
   ]
 }

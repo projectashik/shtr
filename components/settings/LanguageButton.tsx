@@ -31,7 +31,7 @@ const LanguageButton = () => {
                 <button
                   onClick={() => saveLocale(option.value)}
                   className={classNames(
-                    "hover:bg-gray101 flex w-full items-center  gap-2 whitespace-nowrap rounded p-1 text-left text-sm",
+                    "hover:bg-gray101 dark:hover:bg-dark102 flex w-full items-center  gap-2 whitespace-nowrap rounded p-1 text-left text-sm",
                     locale === option.value && "font-bold"
                   )}
                   key={option.label}

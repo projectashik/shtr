@@ -39,8 +39,7 @@ const UrlPasswordForm = ({
         mutate(`/api/link/${link.link_id}/fetch`);
         toast({ message: res.data.msg });
         setIsOpen(false);
-      } catch (e: any) {
-      }
+      } catch (e: any) {}
       setLoading(false);
     },
   });
@@ -58,8 +57,7 @@ const UrlPasswordForm = ({
       mutate(`/api/link/${link.link_id}/fetch`);
 
       toast({ message: res.data.msg });
-    } catch (e: any) {
-    }
+    } catch (e: any) {}
     setIsOpen(false);
     setRemoveLoading(false);
   };
@@ -83,7 +81,7 @@ const UrlPasswordForm = ({
         link.password ? (
           <FormattedMessage
             id="label.updatePassword"
-            defaultMessage="Update Password"
+            defaultMessage="Update password"
           />
         ) : (
           <FormattedMessage

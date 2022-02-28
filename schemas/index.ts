@@ -23,6 +23,22 @@ export const SetPasswordSchema = object().shape({
   ),
 });
 
+export const UsernameUpdateSchema = object().shape({
+  username: string().required("error.usernameRequired"),
+});
+
+export const PasswordUpdateSchema = object().shape({
+  currentPassword: string().required("error.passwordRequired"),
+  newPassword: string().required("error.newPasswordRequired"),
+  confirmNewPassword: string().test(
+    "passwords-match",
+    "error.passwordMustMatchConfirmation",
+    function (value) {
+      return this.parent.newPassword === value;
+    }
+  ),
+});
+
 export const UpdateLinkSchema = object().shape({
   url: string().url().required("error.urlRequired"),
   slug: string().required("error.slugRequired"),

@@ -1,9 +1,9 @@
-import { checkPassword, createSecureToken } from "lib/crypto";
-import { badRequest, ok } from "lib/response";
-import { NextApiRequest, NextApiResponse } from "next";
 import { serialize } from "cookie";
 import { AUTH_COOKIE_NAME } from "lib/constants";
+import { checkPassword, createSecureToken } from "lib/crypto";
 import prisma from "lib/db";
+import { badRequest, ok } from "lib/response";
+import { NextApiResponse } from "next";
 import { NextApiRequestExtended } from "types";
 
 const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
@@ -32,10 +32,10 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
       res.setHeader("Set-Cookie", [cookie]);
       return ok(res, { token });
     } else {
-      return badRequest(res, "Invalid username or password");
+      return badRequest(res, "error.invalidCredentials");
     }
   } catch (e) {
-    return badRequest(res, "Invalid username or password");
+    return badRequest(res, "error.invalidCredentials");
   }
 };
 export default handler;

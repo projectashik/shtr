@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
             msg: "Username updated successfully.",
           });
         } catch (e: any) {
-          return badRequest(res, "Username should be unique");
+          return badRequest(res, "error.usernameUnique");
         }
       } else {
         const { current_password, new_password, confirmation } = req.body;
@@ -54,13 +54,13 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
                   msg: "Password updated successfully",
                 });
               } catch (e) {
-                return badRequest(res, "Something went wrong during ");
+                return badRequest(res, "error.somethingWrong");
               }
             } else {
-              return badRequest(res, "Old password doesn't match.");
+              return badRequest(res, "error.currentPasswordIncorrect");
             }
           } else {
-            return badRequest(res, "User doesn't exist");
+            return badRequest(res, "error.noUser");
           }
         } else {
           return badRequest(res, "Password doesn't match.");

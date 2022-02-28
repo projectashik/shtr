@@ -5,7 +5,11 @@ interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
 }
 const Form = ({ formik, children, ...props }: FormProps) => {
   return (
-    <form onSubmit={formik.handleSubmit} {...props}>
+    <form
+      className="flex flex-col gap-4"
+      onSubmit={formik.handleSubmit}
+      {...props}
+    >
       {children}
       <button type="submit" className="hidden"></button>
     </form>

@@ -1,7 +1,10 @@
 import classNames from "classnames";
 import AppLayout from "components/layouts/AppLayout";
+import { useUser } from "hooks";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   children: React.ReactNode;
@@ -9,23 +12,21 @@ interface Props {
 
 const SettingsLayout = ({ children }: Props) => {
   const router = useRouter();
+  const { user } = useUser();
   const isActive = (path: string) => {
     return router.pathname === path;
   };
-  const links = [
+  const [links, setLinks] = useState([
     {
       link: "/settings/profile",
-      label: "Profile",
-    },
-    {
-      link: "/settings/accounts",
-      label: "Accounts",
+      label: <FormattedMessage id="label.profile" defaultMessage="Profile" />,
     },
     {
       link: "/settings/apis",
-      label: "Apis",
+      label: <FormattedMessage id="label.apis" defaultMessage="Apis" />,
     },
-  ];
+  ]);
+
   return (
     <AppLayout>
       <h1 className="text-xl font-semibold tracking-wider">Settings</h1>
@@ -45,6 +46,22 @@ const SettingsLayout = ({ children }: Props) => {
                   </a>
                 </Link>
               ))}
+              {user?.is_admin && (
+                <Link href="/settings/accounts">
+                  <a
+                    className={classNames(
+                      "dark:hover:bg-dark101 flex items-center rounded p-3 hover:bg-gray-100",
+                      isActive("/settings/accounts") &&
+                        "dark:bg-dark101 bg-gray-200"
+                    )}
+                  >
+                    <FormattedMessage
+                      id="label.accounts"
+                      defaultMessage="Accounts"
+                    />
+                  </a>
+                </Link>
+              )}
             </div>
           </div>
         </div>

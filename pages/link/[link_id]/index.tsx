@@ -12,7 +12,6 @@ import AppLayout from "components/layouts/AppLayout";
 import useCountryNames from "hooks/useCountryNames";
 import useDateRange from "hooks/useDateRange";
 import useLocale from "hooks/useLocale";
-import { FULL_COUNTRIES } from "lib/constants";
 import { fetcher } from "lib/fetchers";
 import {
   getBrowsersWithClicksByDateRange,
@@ -26,7 +25,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { HiCursorClick, HiOutlineExternalLink } from "react-icons/hi";
-import { useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import useSWR from "swr";
 import WithPageAuthRequired from "utils/WithPageAuthRequired";
 
@@ -66,26 +65,46 @@ const SingleLinkPage = () => {
     <AppLayout>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatsCard
-          title={"Clicks"}
+          title={
+            <FormattedMessage
+              id="label.totalClick"
+              defaultMessage="Total Click"
+            />
+          }
           value={link.clicks?.length}
           icon={<HiCursorClick />}
         />
         <StatsCard
-          title={"Top Location"}
+          title={
+            <FormattedMessage
+              id="label.topCountry"
+              defaultMessage="Top Country"
+            />
+          }
           value={
             getTopCountryForLink(link)
-              ? FULL_COUNTRIES[getTopCountryForLink(link)]
+              ? countryNames[getTopCountryForLink(link)]
               : "N/A"
           }
           icon={<HiCursorClick />}
         />
         <StatsCard
-          title="Top Referral"
+          title={
+            <FormattedMessage
+              id="label.topReferral"
+              defaultMessage="Top Referral"
+            />
+          }
           value={getTopReferralForLink(link) || "N/A"}
           icon={<HiOutlineExternalLink />}
         />
         <StatsCard
-          title="Top Browser"
+          title={
+            <FormattedMessage
+              id="label.topBrowser"
+              defaultMessage="Top Browser"
+            />
+          }
           value={getTopBrowserForLink(link) || "N/A"}
           icon={<HiCursorClick />}
         />
@@ -106,7 +125,10 @@ const SingleLinkPage = () => {
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="dark:border-dark101 overflow-hidden rounded border-b border-gray-200 shadow">
                   <div className="dark:bg-dark102 dark:border-dark101 border-b bg-gray-50 py-2 px-6 text-lg font-semibold">
-                    Countries
+                    <FormattedMessage
+                      id="label.countries"
+                      defaultMessage="Countries"
+                    />
                   </div>
                   <table className="dark:divide-dark101 min-w-full divide-y divide-gray-200">
                     <thead className="dark:bg-dark102  bg-gray-50">
@@ -115,13 +137,19 @@ const SingleLinkPage = () => {
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Name
+                          <FormattedMessage
+                            id="label.name"
+                            defaultMessage="Name"
+                          />
                         </th>
                         <th
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Clicks
+                          <FormattedMessage
+                            id="label.clicks"
+                            defaultMessage="Clicks"
+                          />
                         </th>
                       </tr>
                     </thead>
@@ -157,7 +185,10 @@ const SingleLinkPage = () => {
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="dark:border-dark101 overflow-hidden rounded border-b border-gray-200 shadow">
                   <div className="dark:bg-dark102 dark:border-dark101 border-b bg-gray-50 py-2 px-6 text-lg font-semibold">
-                    Devices
+                    <FormattedMessage
+                      id="label.devices"
+                      defaultMessage="Devices"
+                    />
                   </div>
                   <table className="dark:divide-dark101 min-w-full divide-y divide-gray-200">
                     <thead className="dark:bg-dark102  bg-gray-50">
@@ -166,13 +197,19 @@ const SingleLinkPage = () => {
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Device
+                          <FormattedMessage
+                            id="label.device"
+                            defaultMessage="Device"
+                          />
                         </th>
                         <th
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Clicks
+                          <FormattedMessage
+                            id="label.clicks"
+                            defaultMessage="Clicks"
+                          />
                         </th>
                       </tr>
                     </thead>
@@ -202,7 +239,10 @@ const SingleLinkPage = () => {
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="dark:border-dark101 overflow-hidden rounded border-b border-gray-200 shadow">
                   <div className="dark:bg-dark102 dark:border-dark101 border-b bg-gray-50 py-2 px-6 text-lg font-semibold">
-                    Browsers
+                    <FormattedMessage
+                      id="label.browsers"
+                      defaultMessage="Browsers"
+                    />
                   </div>
                   <table className="dark:divide-dark101 min-w-full divide-y divide-gray-200">
                     <thead className="dark:bg-dark102  bg-gray-50">
@@ -211,13 +251,19 @@ const SingleLinkPage = () => {
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Browser
+                          <FormattedMessage
+                            id="label.browser"
+                            defaultMessage="Browser"
+                          />
                         </th>
                         <th
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Clicks
+                          <FormattedMessage
+                            id="label.clicks"
+                            defaultMessage="Clicks"
+                          />
                         </th>
                       </tr>
                     </thead>
@@ -247,7 +293,10 @@ const SingleLinkPage = () => {
               <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                 <div className="dark:border-dark101 overflow-hidden rounded border-b border-gray-200 shadow">
                   <div className="dark:bg-dark102 dark:border-dark101 border-b bg-gray-50 py-2 px-6 text-lg font-semibold">
-                    Referrals
+                    <FormattedMessage
+                      id="label.referrals"
+                      defaultMessage="Referrals"
+                    />
                   </div>
                   <table className="dark:divide-dark101 min-w-full divide-y divide-gray-200">
                     <thead className="dark:bg-dark102  bg-gray-50">
@@ -256,13 +305,19 @@ const SingleLinkPage = () => {
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Referral
+                          <FormattedMessage
+                            id="label.referral"
+                            defaultMessage="Referral"
+                          />
                         </th>
                         <th
                           scope="col"
                           className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                         >
-                          Clicks
+                          <FormattedMessage
+                            id="label.clicks"
+                            defaultMessage="Clicks"
+                          />
                         </th>
                       </tr>
                     </thead>

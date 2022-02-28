@@ -9,7 +9,7 @@ module.exports = {
         gray101: "#F3F4F6",
         dark101: "#19191C",
         dark102: "#27282C",
-        primary: colors.teal,
+        primary: colors.blue,
       },
       fontFamily: {
         sans: ["DM Sans", ...defaultTheme.fontFamily.sans],

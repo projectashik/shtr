@@ -24,21 +24,40 @@ const ApiPage = () => {
     setDeleteLoading(true);
     try {
       await axios.delete(`/api/api/${id}/delete`);
-      toast({ message: "Deleted api" });
+      toast({
+        message: (
+          <FormattedMessage
+            id="label.apiDeleted"
+            defaultMessage="Api Deleted"
+          />
+        ),
+      });
       setIsConfrimDeleteApiOpen(false);
       mutate();
     } catch (e: any) {
       console.log(e.response.data);
-      toast({ message: e.response.data });
+      toast({
+        message: (
+          <FormattedMessage
+            id="error.somethingWrong"
+            defaultMessage="Something went wrong"
+          />
+        ),
+      });
     }
     setDeleteLoading(false);
   };
   return (
     <SettingsLayout>
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold tracking-wider">Apis</h1>
+        <h1 className="text-xl font-semibold tracking-wider">
+          <FormattedMessage id="label.apis" defaultMessage="Apis" />
+        </h1>
         <Button onClick={() => setIsOpen(true)} leftIcon={<FiPlus />}>
-          Invoke new api
+          <FormattedMessage
+            id="label.invokeNewAPI"
+            defaultMessage="Invoke New API"
+          />
         </Button>
       </div>
       <div className="mt-4 flex flex-col">
@@ -52,13 +71,16 @@ const ApiPage = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                     >
-                      Name
+                      <FormattedMessage id="label.name" defaultMessage="Name" />
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                     >
-                      Actions
+                      <FormattedMessage
+                        id="label.actions"
+                        defaultMessage="Actions"
+                      />
                     </th>
                   </tr>
                 </thead>
@@ -78,7 +100,10 @@ const ApiPage = () => {
                               setIsConfrimDeleteApiOpen(true);
                             }}
                           >
-                            Delete
+                            <FormattedMessage
+                              id="label.delete"
+                              defaultMessage="Delete"
+                            />
                           </Button>
                         </td>
                       </tr>
@@ -95,15 +120,15 @@ const ApiPage = () => {
         setIsOpen={setIsConfrimDeleteApiOpen}
         title={
           <FormattedMessage
-            id="label.deleteApikey"
+            id="model.title.deleteAPI"
             defaultMessage="Delete api key"
           />
         }
         confirmLook="danger"
         description={
           <FormattedMessage
-            id="label.areYouSureToDeleteApi"
-            defaultMessage={"Are you sure you want to delete this user?"}
+            id="model.description.deleteAPI"
+            defaultMessage={"Are you sure you want to delete this api?"}
           />
         }
         loading={deleteLoading}

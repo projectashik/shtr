@@ -1,10 +1,12 @@
 import { link } from "@prisma/client";
 import axios from "axios";
+import NotFound from "components/errors/NotFound";
 import Layout from "components/layouts/Layout";
 import FullLogo from "components/logos/full";
 import { Button } from "components/ui";
 import Input from "components/ui/Input";
 import Label from "components/ui/Label";
+import isbot from "isbot";
 import prisma from "lib/db";
 import { linkClickQuery } from "lib/queries";
 import { GetServerSidePropsContext } from "next";
@@ -42,7 +44,7 @@ export default function SlugPage({ link }: { link: any }) {
 
   return (
     <Layout>
-      <div>{!parsedLink && <h1>404 Not Found</h1>}</div>
+      <div>{!parsedLink && <NotFound />}</div>
       {parsedLink && parsedLink.password && (
         <div>
           <h2 className="mt-10 text-center text-4xl font-bold">
@@ -50,7 +52,7 @@ export default function SlugPage({ link }: { link: any }) {
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="shadow-3xl dark:bg-dark102 my-10 mx-auto max-w-md rounded border bg-white p-8 shadow-gray-900 dark:border-gray-600"
+            className="shadow-3xl my-10 mx-auto max-w-md rounded border bg-white p-8 shadow-gray-900 dark:border-gray-600 dark:bg-dark102"
           >
             <Label htmlFor="password">Enter password</Label>
             <Input
@@ -91,6 +93,26 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
           link: JSON.stringify(link),
         },
       };
+    } else if (link.bot_protection) {
+      if (isbot(req.headers["user-agent"])) {
+        return {
+          props: {
+            link: JSON.stringify(link),
+            error: "Bot protection enabled",
+          },
+        };
+      } else {
+        await linkClickQuery(req, link.link_id);
+        return {
+          props: {
+            link: JSON.stringify(link),
+          },
+          redirect: {
+            permanent: false,
+            destination: link.url,
+          },
+        };
+      }
     } else {
       await linkClickQuery(req, link.link_id);
       return {

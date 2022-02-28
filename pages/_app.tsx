@@ -3,6 +3,7 @@ import { KBarProvider } from "kbar";
 import { actions } from "lib/actions";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
+import NextNprogress from "nextjs-progressbar";
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { IntlProvider } from "react-intl";
@@ -28,6 +29,13 @@ const Intl = ({ children }: { children: React.ReactNode }) => {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Intl>
+      <NextNprogress
+        color="#29D"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+        showOnShallow={true}
+      />
       <ThemeProvider attribute="class" enableColorScheme enableSystem>
         <KBarProvider
           options={{

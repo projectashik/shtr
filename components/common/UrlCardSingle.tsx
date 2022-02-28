@@ -94,7 +94,7 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
     <>
       <div
         key={link.link_id}
-        className="dark:border-dark102 dark:bg-dark102 my-3 flex flex-col rounded border bg-white p-2 shadow dark:shadow-gray-800 md:p-6"
+        className="my-3 flex flex-col rounded border bg-white p-2 shadow dark:border-dark102 dark:bg-dark102 dark:shadow-gray-800 md:p-6"
       >
         <div className="flex w-full justify-between space-x-5">
           <div>
@@ -191,7 +191,7 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
           setIsOpen={setRefreshLinkModalOpen}
           description={
             <FormattedMessage
-              id="label.areYouSureYouWantToRefreshThisLink"
+              id="model.title.refreshLink"
               defaultMessage="Are you sure you want to refresh this link"
             />
           }

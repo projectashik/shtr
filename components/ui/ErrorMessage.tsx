@@ -29,6 +29,12 @@ const ErrorMessage = ({
         defaultMessage="The password field is required"
       />
     ),
+    "error.newPasswordRequired": (
+      <FormattedMessage
+        id="error.newPasswordRequired"
+        defaultMessage="The new password field is required"
+      />
+    ),
     "error.passwordMinLength": (
       <FormattedMessage
         id="error.passwordMinLength"
@@ -47,10 +53,34 @@ const ErrorMessage = ({
         defaultMessage="The username field is required"
       />
     ),
+    "error.usernameUnique": (
+      <FormattedMessage
+        id="error.usernameUnique"
+        defaultMessage="The username is already taken"
+      />
+    ),
     "error.slugRequired": (
       <FormattedMessage
         id="error.slugRequired"
         defaultMessage="The slug field is required"
+      />
+    ),
+    "error.invalidCredentials": (
+      <FormattedMessage
+        id="error.invalidCredentials"
+        defaultMessage="The username or password is incorrect"
+      />
+    ),
+    "error.somethingWrong": (
+      <FormattedMessage
+        id="error.somethingWrong"
+        defaultMessage="Something went wrong"
+      />
+    ),
+    "error.currentPasswordIncorrect": (
+      <FormattedMessage
+        id="error.currentPasswordIncorrect"
+        defaultMessage="Current password is incorrect"
       />
     ),
   };

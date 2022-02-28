@@ -3,7 +3,8 @@ import { StatsCard, UrlCard } from "components/common";
 import ShortenUrlForm from "components/forms/ShortenUrlForm";
 import AppLayout from "components/layouts/AppLayout";
 import { Button, Modal } from "components/ui";
-import { FULL_COUNTRIES } from "lib/constants";
+import useCountryNames from "hooks/useCountryNames";
+import useLocale from "hooks/useLocale";
 import { fetcher } from "lib/fetchers";
 import { countTotalClicks, getTopCountry, getTopReferral } from "lib/helper";
 import { toast } from "lib/toast";
@@ -23,6 +24,8 @@ const Home = () => {
   const [selectedLinks, setSelectedLinks] = useState<number[]>([]);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [isDeleteManyConfirmOpen, setIsDeleteManyConfirmOpen] = useState(false);
+  const { locale } = useLocale();
+  const countryNames = useCountryNames(locale);
   const addToSelected = (e: BaseSyntheticEvent, link_id: any) => {
     if (e.target.checked) {
       setSelectedLinks([...selectedLinks, link_id]);
@@ -45,13 +48,34 @@ const Home = () => {
         setSelectedLinks([]);
         setIsDeleteManyConfirmOpen(false);
         mutate("/api/links");
-        toast({ message: "Deleted Links" });
+        toast({
+          message: (
+            <FormattedMessage
+              id="label.linksDeleted"
+              defaultMessage="Links Deleted"
+            />
+          ),
+        });
       } catch (e: any) {
         console.log(e.response.data);
-        toast({ message: "Error deleting links" });
+        toast({
+          message: (
+            <FormattedMessage
+              id="error.deletingLink"
+              defaultMessage="Error deleting links"
+            />
+          ),
+        });
       }
     } else {
-      toast({ message: "Please select at least one link" });
+      toast({
+        message: (
+          <FormattedMessage
+            id="error.selectAtLeastOneLink"
+            defaultMessage="Please select at least one link"
+          />
+        ),
+      });
     }
     setDeleteLoading(false);
   };
@@ -76,7 +100,7 @@ const Home = () => {
             />
           }
           value={
-            getTopCountry(links) ? FULL_COUNTRIES[getTopCountry(links)] : "N/A"
+            getTopCountry(links) ? countryNames[getTopCountry(links)] : "N/A"
           }
           icon={<HiOutlineLocationMarker />}
         />
@@ -109,15 +133,33 @@ const Home = () => {
           look="danger"
           onClick={() => setIsDeleteManyConfirmOpen(true)}
         >
-          Delete Selected
+          <FormattedMessage
+            id="label.deleteSelected"
+            defaultMessage="Delete Selected"
+          />
         </Button>
       )}
       <Modal
         isOpen={isDeleteManyConfirmOpen}
         setIsOpen={setIsDeleteManyConfirmOpen}
-        title="Are you sure?"
-        description="This will delete all the selected links"
-        confirmText="Delete Selected"
+        title={
+          <FormattedMessage
+            id="label.areYouSure"
+            defaultMessage="Are you sure?"
+          />
+        }
+        description={
+          <FormattedMessage
+            id="model.description.deleteSelected"
+            defaultMessage="This will delete all selected links"
+          />
+        }
+        confirmText={
+          <FormattedMessage
+            id="label.deleteSelected"
+            defaultMessage="Delete Selected"
+          />
+        }
         confirmLook="danger"
         loading={deleteLoading}
         onConfirm={onDeleteSelected}

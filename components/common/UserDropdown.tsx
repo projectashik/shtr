@@ -13,12 +13,15 @@ const UserDropdown = () => {
   const dropItems = [
     {
       label: <FormattedMessage id="label.profile" defaultMessage="Profile" />,
-      onClick: () => router.push("/profile"),
+      onClick: () => router.push("/settings/profile"),
       icon: <HiOutlineUserCircle />,
     },
     {
       label: <FormattedMessage id="label.settings" defaultMessage="Settings" />,
-      onClick: () => router.push("/settings/accounts"),
+      onClick: () =>
+        user?.is_admin
+          ? router.push("/settings/accounts")
+          : router.push("/settings/profile"),
       icon: <FiSettings />,
     },
     {

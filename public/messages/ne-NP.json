@@ -1,38 +1,86 @@
 {
+  "error.currentPasswordIncorrect": [
+    {
+      "type": 0,
+      "value": "हालको पासवर्ड गलत छ"
+    }
+  ],
+  "error.deletingLink": [
+    {
+      "type": 0,
+      "value": "लिङ्कहरू मेटाउँदा त्रुटि भयो"
+    }
+  ],
+  "error.fileRequired": [
+    {
+      "type": 0,
+      "value": "फाइल फिल्ड आवश्यक छ"
+    }
+  ],
+  "error.invalidCredentials": [
+    {
+      "type": 0,
+      "value": "प्रयोगकर्ता नाम वा पासवर्ड गलत छ"
+    }
+  ],
+  "error.newPasswordRequired": [
+    {
+      "type": 0,
+      "value": "नयाँ पासवर्ड फिल्ड आवश्यक छ"
+    }
+  ],
+  "error.noDataFoundInFile": [
+    {
+      "type": 0,
+      "value": "फाइलमा कुनै डाटा फेला परेन"
+    }
+  ],
   "error.passwordMinLength": [
     {
       "type": 0,
-      "value": "The password must be at least 8 characters"
+      "value": "पासवर्ड कम्तिमा ८ वर्णको हुनुपर्छ"
     }
   ],
   "error.passwordMustMatchConfirmation": [
     {
       "type": 0,
-      "value": "The password and confirmation password must match"
+      "value": "पासवर्ड र पुष्टिकरण पासवर्ड मिल्नुपर्छ"
     }
   ],
   "error.passwordRequired": [
     {
       "type": 0,
-      "value": "The password field is required"
+      "value": "पासवर्ड फिल्ड आवश्यक छ"
+    }
+  ],
+  "error.selectAtLeastOneLink": [
+    {
+      "type": 0,
+      "value": "कृपया कम्तिमा एउटा लिङ्क चयन गर्नुहोस्"
     }
   ],
   "error.slugRequired": [
     {
       "type": 0,
-      "value": "The slug field is required"
+      "value": "स्लग क्षेत्र आवश्यक छ"
+    }
+  ],
+  "error.somethingWrong": [
+    {
+      "type": 0,
+      "value": "केहि गलत भयो"
     }
   ],
   "error.urlInvalid": [
     {
       "type": 0,
-      "value": "कृपया सही URL दिनुहोस्"
+      "value": "कृपया सही यूआरएल दिनुहोस्"
     }
   ],
   "error.urlRequired": [
     {
       "type": 0,
-      "value": "URL अनिवार्य छ"
+      "value": "यूआरएल अनिवार्य छ"
     }
   ],
   "error.usernameRequired": [
@@ -41,16 +89,112 @@
       "value": "यूजर नाम अनिवार्य छ"
     }
   ],
+  "error.usernameUnique": [
+    {
+      "type": 0,
+      "value": "प्रयोगकर्ता नाम पहिले नै लिइएको छ"
+    }
+  ],
+  "label.accounts": [
+    {
+      "type": 0,
+      "value": "खाताहरू"
+    }
+  ],
+  "label.actions": [
+    {
+      "type": 0,
+      "value": "कार्यहरू"
+    }
+  ],
+  "label.addAccount": [
+    {
+      "type": 0,
+      "value": "खाता थप्नुहोस्"
+    }
+  ],
+  "label.admin": [
+    {
+      "type": 0,
+      "value": "व्यवस्थापक"
+    }
+  ],
   "label.analytics": [
     {
       "type": 0,
       "value": "विश्लेषण"
     }
   ],
+  "label.apiDeleted": [
+    {
+      "type": 0,
+      "value": "एपीआई मेटाइयो"
+    }
+  ],
+  "label.apiKey": [
+    {
+      "type": 0,
+      "value": "एपीआई कुञ्जी"
+    }
+  ],
+  "label.apis": [
+    {
+      "type": 0,
+      "value": "एपीआई"
+    }
+  ],
+  "label.areYouSure": [
+    {
+      "type": 0,
+      "value": "के तपाईँ निश्चित हुनुहुन्छ?"
+    }
+  ],
+  "label.browser": [
+    {
+      "type": 0,
+      "value": "ब्राउजर"
+    }
+  ],
+  "label.browsers": [
+    {
+      "type": 0,
+      "value": "ब्राउजरहरू"
+    }
+  ],
+  "label.bulkCreate": [
+    {
+      "type": 0,
+      "value": "बल्क सिर्जना गर्नुहोस्"
+    }
+  ],
+  "label.bulkCreateSuccessfull": [
+    {
+      "type": 0,
+      "value": "फाइलबाट मान्य लिङ्कहरूलाई सफलतापूर्वक छोटो पारियो"
+    }
+  ],
   "label.cancel": [
     {
       "type": 0,
       "value": "रद्द करें"
+    }
+  ],
+  "label.clicks": [
+    {
+      "type": 0,
+      "value": "क्लिकहरू"
+    }
+  ],
+  "label.confirm": [
+    {
+      "type": 0,
+      "value": "पुष्टि गर्नुहोस्"
+    }
+  ],
+  "label.confirmNewPassword": [
+    {
+      "type": 0,
+      "value": "नयाँ पासवर्ड पुष्टि गर्नुहोस्"
     }
   ],
   "label.confirmPassword": [
@@ -62,139 +206,271 @@
   "label.copiedUrlToClipboard": [
     {
       "type": 0,
-      "value": "Copied Url to clipboard"
+      "value": "क्लिपबोर्डमा यूआरएल प्रतिलिपि गरियो"
+    }
+  ],
+  "label.copyApiKey": [
+    {
+      "type": 0,
+      "value": "एपीआई कुञ्जी प्रतिलिपि गर्नुहोस्"
     }
   ],
   "label.copyShortUrl": [
     {
       "type": 0,
-      "value": "Copy short URL"
+      "value": "छोटो यूआरएल प्रतिलिपि गर्नुहोस्"
+    }
+  ],
+  "label.countries": [
+    {
+      "type": 0,
+      "value": "देशहरू"
     }
   ],
   "label.createdBy": [
     {
       "type": 0,
-      "value": "Created By"
+      "value": "द्वारा सिर्जना गरिएको"
     }
   ],
-  "label.date-range": [
+  "label.currentPassword": [
     {
       "type": 0,
-      "value": "Date Range"
+      "value": "वर्तमान पासवर्ड"
     }
   ],
   "label.date.24hr": [
     {
       "type": 0,
-      "value": "Last 24 hours"
+      "value": "पछिल्लो २४ घण्टा"
     }
   ],
   "label.date.last30Days": [
     {
       "type": 0,
-      "value": "Last 30 days"
+      "value": "पछिल्लो ३० दिन"
     }
   ],
   "label.date.last90Days": [
     {
       "type": 0,
-      "value": "Last 90 days"
+      "value": "पछिल्लो ९० दिन"
     }
   ],
   "label.date.lastSevenDays": [
     {
       "type": 0,
-      "value": "Last Seven Days"
+      "value": "पछिल्लो सात दिन"
     }
   ],
   "label.date.month": [
     {
       "type": 0,
-      "value": "This month"
+      "value": "यो महिना"
     }
   ],
   "label.date.thisYear": [
     {
       "type": 0,
-      "value": "This year"
+      "value": "यो वर्ष"
     }
   ],
   "label.date.today": [
     {
       "type": 0,
-      "value": "Today"
+      "value": "आज"
     }
   ],
   "label.date.week": [
     {
       "type": 0,
-      "value": "This week"
+      "value": "यो हप्ता"
+    }
+  ],
+  "label.delete": [
+    {
+      "type": 0,
+      "value": "मेट्नुहोस्"
+    }
+  ],
+  "label.deleteSelected": [
+    {
+      "type": 0,
+      "value": "चयन गरिएको मेटाउनुहोस्"
+    }
+  ],
+  "label.device": [
+    {
+      "type": 0,
+      "value": "उपकरण"
+    }
+  ],
+  "label.devices": [
+    {
+      "type": 0,
+      "value": "उपकरणहरू"
+    }
+  ],
+  "label.done": [
+    {
+      "type": 0,
+      "value": "सकियो"
+    }
+  ],
+  "label.edit": [
+    {
+      "type": 0,
+      "value": "सम्पादन गर्नुहोस्"
     }
   ],
   "label.editUrl": [
     {
       "type": 0,
-      "value": "Edit url"
+      "value": "यूआरएल सम्पादन गर्नुहोस्"
+    }
+  ],
+  "label.editUser": [
+    {
+      "type": 0,
+      "value": "प्रयोगकर्ता सम्पादन गर्नुहोस्"
+    }
+  ],
+  "label.errorRefreshingLink": [
+    {
+      "type": 0,
+      "value": "लिङ्क रिफ्रेस गर्दा त्रुटि।"
     }
   ],
   "label.generateQR": [
     {
       "type": 0,
-      "value": "Generate QR Code for the short url"
+      "value": "छोटो यूआरएल को लागि QR कोड उत्पन्न गर्नुहोस्"
+    }
+  ],
+  "label.invokeNewAPI": [
+    {
+      "type": 0,
+      "value": "नयाँ API आह्वान गर्नुहोस्"
+    }
+  ],
+  "label.linkRefreshed": [
+    {
+      "type": 0,
+      "value": "लिङ्क रिफ्रेस गरियो"
+    }
+  ],
+  "label.linksDeleted": [
+    {
+      "type": 0,
+      "value": "लिङ्कहरू मेटाइयो"
+    }
+  ],
+  "label.loggedIn": [
+    {
+      "type": 0,
+      "value": "सफलतापूर्वक लग इन गरियो"
     }
   ],
   "label.logout": [
     {
       "type": 0,
-      "value": "Logout"
+      "value": "बाहिर निस्कनु"
+    }
+  ],
+  "label.name": [
+    {
+      "type": 0,
+      "value": "नाम"
+    }
+  ],
+  "label.newPassword": [
+    {
+      "type": 0,
+      "value": "नया पासवर्ड"
+    }
+  ],
+  "label.openLink": [
+    {
+      "type": 0,
+      "value": "लिङ्क खोल्नुहोस्"
     }
   ],
   "label.password": [
     {
       "type": 0,
-      "value": "Password"
+      "value": "पासवर्ड"
+    }
+  ],
+  "label.passwordUpdated": [
+    {
+      "type": 0,
+      "value": "पासवर्ड अपडेट गरियो।"
     }
   ],
   "label.pasteLongUrl": [
     {
       "type": 0,
-      "value": "Paste long URL here"
+      "value": "यहाँ लामो यूआरएल टाँस्नुहोस्"
     }
   ],
   "label.profile": [
     {
       "type": 0,
-      "value": "Profile"
+      "value": "प्रोफाइल"
+    }
+  ],
+  "label.referral": [
+    {
+      "type": 0,
+      "value": "रेफरल"
+    }
+  ],
+  "label.referrals": [
+    {
+      "type": 0,
+      "value": "रेफरलहरू"
+    }
+  ],
+  "label.refreshLink": [
+    {
+      "type": 0,
+      "value": "लिङ्क रिफ्रेस गर्नुहोस्"
     }
   ],
   "label.removePassword": [
     {
       "type": 0,
-      "value": "Remove Password"
+      "value": "पासवर्ड हटाउनुहोस्"
     }
   ],
   "label.removeShortUrl": [
     {
       "type": 0,
-      "value": "Remove short url"
+      "value": "छोटो यूआरएल हटाउनुहोस्"
     }
   ],
   "label.setPassword": [
     {
       "type": 0,
-      "value": "Set Password"
+      "value": "पासवर्ड सेट गर्नुहोस्"
     }
   ],
   "label.settings": [
     {
       "type": 0,
-      "value": "Settings"
+      "value": "सेटिङहरू"
+    }
+  ],
+  "label.shorten": [
+    {
+      "type": 0,
+      "value": "छोटो पार्नुहोस्"
     }
   ],
   "label.shortenLongUrl": [
     {
       "type": 0,
-      "value": "URL छोटो पार्नुहोस्"
+      "value": "यूआरएल छोटो पार्नुहोस्"
     }
   ],
   "label.shortenUrl": [
@@ -203,10 +479,16 @@
       "value": "छोटो पार्नुहोस्"
     }
   ],
-  "label.single-day": [
+  "label.thisWillRemoveAllTheClicksOfTheLink": [
     {
       "type": 0,
-      "value": "Single Day"
+      "value": "यसले लिङ्कका सबै क्लिकहरू हटाउनेछ"
+    }
+  ],
+  "label.topBrowser": [
+    {
+      "type": 0,
+      "value": "शीर्ष ब्राउजर"
     }
   ],
   "label.topCountry": [
@@ -230,7 +512,31 @@
   "label.updatePassword": [
     {
       "type": 0,
-      "value": "Update Password"
+      "value": "पासवर्ड अपडेट गर्नुहोस्"
+    }
+  ],
+  "label.updateUsername": [
+    {
+      "type": 0,
+      "value": "प्रयोगकर्ता नाम अपडेट गर्नुहोस्"
+    }
+  ],
+  "label.userDeleted": [
+    {
+      "type": 0,
+      "value": "User Deleted"
+    }
+  ],
+  "label.username": [
+    {
+      "type": 0,
+      "value": "Username"
+    }
+  ],
+  "label.usernameUpdated": [
+    {
+      "type": 0,
+      "value": "Username updated."
     }
   ],
   "label.yourLinks": [
@@ -239,16 +545,64 @@
       "value": "तपाईंको लिङ्कहरू"
     }
   ],
+  "message.apiKeyAreShownOnce": [
+    {
+      "type": 0,
+      "value": "API keys are shown only once"
+    }
+  ],
+  "message.storeApiKey": [
+    {
+      "type": 0,
+      "value": "Store the api key in a safe place, you can't view the api key later"
+    }
+  ],
   "modal.description.setPassword": [
     {
       "type": 0,
-      "value": "User will need to enter password everytime they click the link"
+      "value": "प्रयोगकर्ताले प्रत्येक पटक लिङ्क क्लिक गर्दा पासवर्ड प्रविष्ट गर्न आवश्यक हुनेछ"
     }
   ],
   "modal.title.setPassword": [
     {
       "type": 0,
-      "value": "Password protect your short link"
+      "value": "पासवर्ड तपाईंको छोटो लिङ्क सुरक्षित गर्नुहोस्"
+    }
+  ],
+  "model.description.deleteAPI": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to delete this api?"
+    }
+  ],
+  "model.description.deleteSelected": [
+    {
+      "type": 0,
+      "value": "This will delete all selected links"
+    }
+  ],
+  "model.description.deleteUser": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to delete this user?"
+    }
+  ],
+  "model.title.deleteAPI": [
+    {
+      "type": 0,
+      "value": "Delete api key"
+    }
+  ],
+  "model.title.deleteUser": [
+    {
+      "type": 0,
+      "value": "Delete User"
+    }
+  ],
+  "model.title.refreshLink": [
+    {
+      "type": 0,
+      "value": "Are you sure you want to refresh this link"
     }
   ]
 }
