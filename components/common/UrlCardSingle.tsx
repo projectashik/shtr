@@ -45,7 +45,7 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
   };
 
   const onCopy = () => {
-    navigator.clipboard.writeText(`${router.basePath}/${link.slug}`);
+    navigator.clipboard.writeText(`${window.location.origin}/${link.slug}`);
     toast({ message: "Copied to clipboard" });
   };
 
@@ -94,7 +94,7 @@ const UrlCardSingle = ({ link }: { link: LinkWithUser }) => {
     <>
       <div
         key={link.link_id}
-        className="my-3 flex flex-col rounded border bg-white p-2 shadow dark:border-dark102 dark:bg-dark102 dark:shadow-gray-800 md:p-6"
+        className="dark:border-dark102 dark:bg-dark102 my-3 flex flex-col rounded border bg-white p-2 shadow dark:shadow-gray-800 md:p-6"
       >
         <div className="flex w-full justify-between space-x-5">
           <div>
