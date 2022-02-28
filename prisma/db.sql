@@ -43,6 +43,6 @@ insert into
 values
   (
     'admin',
-    '$2b$10$BUli0c.muyCW1ErNJc3jL.vFRFtFJWrT8/GcR4A.sUdCznaXiqFXa',
+    '$2a$10$FI1tPSTG3u0VBhUugfL1PeC/kU77OVMGctQe80NVs3DGiUn95dN.G',
     true
   );
