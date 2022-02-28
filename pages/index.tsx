@@ -151,8 +151,18 @@ const Home = () => {
       </div>
 
       <ShortenUrlForm mutator={swr.mutate} />
+
+      <form action="">
+        <Input
+          type="text"
+          value={search}
+          onChange={onSearch}
+          placeholder="Search"
+        />
+      </form>
       {selectedLinks && selectedLinks.length > 0 && (
         <Button
+          className="mt-2"
           loading={deleteLoading}
           look="danger"
           onClick={() => setIsDeleteManyConfirmOpen(true)}
@@ -189,14 +199,6 @@ const Home = () => {
         onConfirm={onDeleteSelected}
       />
 
-      <form action="">
-        <Input
-          type="text"
-          value={search}
-          onChange={onSearch}
-          placeholder="Search"
-        />
-      </form>
       {search &&
         searchedLinks &&
         searchedLinks.length > 0 &&
