@@ -53,7 +53,12 @@ const AddUserForm = ({
       >
         <Form formik={formik}>
           <Field label="Username" id="username" formikHandler={formik} />
-          <Field label="Password" id="password" formikHandler={formik} />
+          <Field
+            type="password"
+            label="Password"
+            id="password"
+            formikHandler={formik}
+          />
         </Form>
       </Modal>
     </div>
