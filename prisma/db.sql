@@ -40,7 +40,7 @@ create unique index link_slug_key on link using btree (slug);
 create index link_user_id_idx on link using btree (user_id);
 create unique index user_username_key on user using btree (username);
 insert into
-  user(username, password, is_admin)
+  account(username, password, is_admin)
 values
   (
     "admin",
