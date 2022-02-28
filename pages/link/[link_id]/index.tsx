@@ -119,6 +119,11 @@ const SingleLinkPage = () => {
       {/* create a line chart for the click of the given date range */}
 
       <div className="mt-4 flex flex-col">
+        <div>
+          <div className="dark:bg-dark102 mb-4 rounded bg-white p-4">
+            <p className="text-xl">Clicks: {link.clicks.length}</p>
+          </div>
+        </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
