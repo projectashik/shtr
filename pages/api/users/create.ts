@@ -14,14 +14,14 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
         if (!username || !password) {
           return badRequest(res, "Username and password is required.");
         }
-        let user = await prisma.user.findUnique({
+        let user = await prisma.account.findUnique({
           where: {
             username,
           },
         });
         if (!user) {
           let hashedPassword = hashPassword(password);
-          const user = await prisma.user.create({
+          const user = await prisma.account.create({
             data: {
               username,
               password: hashedPassword,

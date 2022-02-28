@@ -9,7 +9,7 @@ const hashPassword = (password) => {
 
 async function main() {
   const password = hashPassword(process.env.ADMIN_PASSWORD || "shtr");
-  await prisma.user.upsert({
+  await prisma.account.upsert({
     where: { username: "admin" },
     update: {},
     create: {

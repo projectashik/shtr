@@ -9,7 +9,7 @@ handler.get(async (req, res) => {
   try {
     const { is_admin } = req.auth;
     if (is_admin) {
-      const users = await prisma.user.findMany({
+      const users = await prisma.account.findMany({
         orderBy: {
           created_at: "asc",
         },
@@ -31,14 +31,14 @@ handler.post(async (req, res) => {
       if (!username || !password) {
         return badRequest(res, "Username and password is required.");
       }
-      let user = await prisma.user.findUnique({
+      let user = await prisma.account.findUnique({
         where: {
           username,
         },
       });
       if (!user) {
         let hashedPassword = hashPassword(password);
-        const user = await prisma.user.create({
+        const user = await prisma.account.create({
           data: {
             username,
             password: hashedPassword,

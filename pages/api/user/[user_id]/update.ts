@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
       if (type === "username") {
         const { username } = req.body;
         try {
-          const user = await prisma.user.update({
+          const user = await prisma.account.update({
             where: {
               user_id: +user_id,
             },
@@ -33,7 +33,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
         const { username, password } = req.body;
         const hashedPass = hashPassword(password);
         try {
-          const user = await prisma.user.update({
+          const user = await prisma.account.update({
             where: {
               user_id: +user_id,
             },
@@ -52,7 +52,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
         const { current_password, new_password, confirmation } = req.body;
 
         if (new_password === confirmation) {
-          const userDoesExist = await prisma.user.findUnique({
+          const userDoesExist = await prisma.account.findUnique({
             where: {
               user_id: +user_id,
             },
@@ -60,7 +60,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
           if (userDoesExist) {
             if (checkPassword(current_password, userDoesExist.password)) {
               try {
-                const user = await prisma.user.update({
+                const user = await prisma.account.update({
                   where: {
                     user_id: +user_id,
                   },

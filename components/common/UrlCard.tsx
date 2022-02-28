@@ -22,9 +22,11 @@ import QrCode from "./QrCode";
 const UrlCard = ({
   link,
   onChange,
+  mutator,
 }: {
   link: LinkWithUser;
   onChange: (e: BaseSyntheticEvent, link_id: number) => void;
+  mutator: any;
 }) => {
   const { mutate } = useSWRConfig();
   const { user } = useUser();
@@ -41,6 +43,7 @@ const UrlCard = ({
         toast({ message: "Deleted Link" });
         setIsDeleteConfirmOpen(false);
         mutate("/api/links");
+        mutator();
       }
     } catch (e: any) {
       toast({ message: "Error deleting link" });
@@ -195,12 +198,14 @@ const UrlCard = ({
           isOpen={showPasswordModal}
           setIsOpen={setShowPasswordModal}
           link={link}
+          mutator={mutator}
         />
 
         <Modal
           title="Delete Short URL"
           confirmText="Confirm"
           onConfirm={onDelete}
+          loading={deleteLoading}
           isOpen={isDeleteConfirmOpen}
           confirmLook="danger"
           setIsOpen={setIsDeleteConfirmOpen}
@@ -219,6 +224,7 @@ const UrlCard = ({
           editLinkOpen={editLinkOpen}
           setEditLinkOpen={setEditLinkOpen}
           link={link}
+          mutator={mutator}
         />
       </div>
     </>

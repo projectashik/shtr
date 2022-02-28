@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
+model account {
   user_id    Int       @id @default(autoincrement())
   username   String    @unique @db.VarChar(255)
   password   String    @db.VarChar(60)
@@ -29,7 +29,7 @@ model link {
   slug           String    @unique @db.VarChar(255)
   created_at     DateTime? @default(now()) @db.Timestamptz(6)
   password       String?   @db.VarChar(60)
-  user           user      @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  user           account   @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   clicks         click[]
   bot_protection Boolean   @default(false)
 
@@ -39,7 +39,7 @@ model link {
 model api {
   api_id     Int      @id @default(autoincrement())
   user_id    Int
-  user       user     @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  user       account  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
   key        String
   name       String
   created_at DateTime @default(now()) @db.Timestamptz(6)

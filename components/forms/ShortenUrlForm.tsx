@@ -6,7 +6,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { ShortenUrlSchema } from "schemas";
 import { useSWRConfig } from "swr";
 import BulkForm from "./BulkForm";
-const ShortenUrlForm = () => {
+const ShortenUrlForm = ({ mutator }: { mutator: any }) => {
   const [url, setUrl] = useState("");
   const { formatMessage } = useIntl();
   const { mutate } = useSWRConfig();
@@ -21,6 +21,7 @@ const ShortenUrlForm = () => {
     onSubmit: async (values) => {
       await shortner(values.url);
       mutate("/api/links");
+      mutator();
     },
   });
 

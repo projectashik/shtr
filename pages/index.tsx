@@ -150,7 +150,7 @@ const Home = () => {
         />
       </div>
 
-      <ShortenUrlForm />
+      <ShortenUrlForm mutator={swr.mutate} />
       {selectedLinks && selectedLinks.length > 0 && (
         <Button
           loading={deleteLoading}
@@ -202,6 +202,7 @@ const Home = () => {
         searchedLinks.length > 0 &&
         searchedLinks.map((link: any) => (
           <UrlCard
+            mutator={swr.mutate}
             onChange={addToSelected}
             key={link.item.link_id}
             link={link.item}
@@ -211,7 +212,7 @@ const Home = () => {
         <InfiniteScroll
           swr={swr}
           loadingIndicator={<UrlCardSkeleton />}
-          endingIndicator="No more links! 🎉"
+          endingIndicator="No more links!"
           isReachingEnd={(swr) =>
             swr.data?.[0]?.length === 0 ||
             swr.data?.[swr.data?.length - 1]?.length < 10
@@ -220,6 +221,7 @@ const Home = () => {
           {(response: any) =>
             response?.map((link: any) => (
               <UrlCard
+                mutator={swr.mutate}
                 onChange={addToSelected}
                 key={link.link_id}
                 link={link}

@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "DELETE") {
     const { user_id } = req.query;
     try {
-      const user = await prisma.user.findFirst({
+      const user = await prisma.account.findFirst({
         where: {
           user_id: +user_id,
         },
@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return badRequest(res, "Cannot remove admin");
       }
       try {
-        const deletedUser = await prisma.user.delete({
+        const deletedUser = await prisma.account.delete({
           where: {
             user_id: +user_id,
           },

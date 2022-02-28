@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequestExtended, res: NextApiResponse) => {
   }
 
   try {
-    const user = await prisma?.user.findUnique({
+    const user = await prisma?.account.findUnique({
       where: {
         username,
       },
