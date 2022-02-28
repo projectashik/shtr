@@ -64,7 +64,11 @@ const ShortenUrlForm = ({ mutator }: { mutator: any }) => {
         </Button>
       </form>
       <ErrorMessage formikHandler={formik} name="url"></ErrorMessage>
-      <BulkForm isOpen={bulkCreateDisplay} setIsOpen={setBulkCreateDisplay} />
+      <BulkForm
+        mutator={mutator}
+        isOpen={bulkCreateDisplay}
+        setIsOpen={setBulkCreateDisplay}
+      />
     </div>
   );
 };

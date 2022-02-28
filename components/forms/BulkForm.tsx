@@ -9,11 +9,13 @@ import { mutate } from "swr";
 interface BulkFormProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  mutator: any;
 }
 
-const BulkForm = ({ isOpen, setIsOpen }: BulkFormProps) => {
+const BulkForm = ({ isOpen, setIsOpen, mutator }: BulkFormProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [error, setError] = useState<any>("");
+  const [loading, setLoading] = useState(false);
   const onFileChange = (e: BaseSyntheticEvent) => {
     setSelectedFile(e.currentTarget.files[0]);
     setError("");
@@ -21,6 +23,7 @@ const BulkForm = ({ isOpen, setIsOpen }: BulkFormProps) => {
   };
 
   const onSubmit = async () => {
+    setLoading(true);
     if (selectedFile) {
       Papa.parse(selectedFile, {
         header: true,
@@ -40,6 +43,7 @@ const BulkForm = ({ isOpen, setIsOpen }: BulkFormProps) => {
             })
             .then((res) => {
               mutate("/api/links");
+              mutator && mutator();
               setIsOpen(false);
               toast({
                 message: (
@@ -66,6 +70,7 @@ const BulkForm = ({ isOpen, setIsOpen }: BulkFormProps) => {
         />
       );
     }
+    setLoading(false);
   };
 
   return (
@@ -75,6 +80,7 @@ const BulkForm = ({ isOpen, setIsOpen }: BulkFormProps) => {
       title={
         <FormattedMessage id="label.bulkCreate" defaultMessage="Bulk Create" />
       }
+      loading={loading}
       onConfirm={onSubmit}
       confirmText={
         <FormattedMessage id="label.shorten" defaultMessage="Shorten" />
